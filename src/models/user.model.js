@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
     cart: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "carts",
-      required: true
+      required: false
     },
 
     password: {
