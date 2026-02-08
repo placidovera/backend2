@@ -1,0 +1,31 @@
+<div class="app-container">
+
+  <!-- Producto ÚNICO -->
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-info">
+        <div class="product-title">{{producto.title}}</div>
+        <div class="product-meta">
+          <span class="price">$ {{producto.price}}</span>
+          <span class="category">{{producto.category}}</span>
+        </div>
+      </div>
+      <button class="add-to-cart" data-id="{{producto._id}}">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
+  <!-- Carrito -->
+  <div class="cart-panel">
+    <div class="cart-header">
+      <span class="cart-title">Carrito</span>
+    </div>
+    <div id="cart-items" class="cart-items">
+    </div>
+  </div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/cart.js"></script>
