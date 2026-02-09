@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/cart", async (req, res) => {
   try {
-    res.render("realTimeProducts");
+    res.render("home");
   } catch (err) {
     console.error(err);
     res.status(500).send("Error mostrando carrito");

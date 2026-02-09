@@ -7,6 +7,8 @@ import initializePassport from "./config/passport.config.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import viewRouter from "./routes/view.routes.js"
+import cartRouter from "./routes/cart.routes.js"
+import prodRoutes from "./routes/product.routes.js"
 import sessionRoutes from "./routes/session.routes.js";
 import { connectAuto } from "./config/conect.config.js";
 
@@ -31,6 +33,8 @@ app.use("/", viewRouter);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/session", sessionRoutes);
+app.use("/api/cart", cartRouter);
+app.use("/api/product",prodRoutes)
 
 // Start server
 const startServer = async () => {
