@@ -1,16 +1,72 @@
 import { Router } from "express";
-import {Cart} from "../models/cart.model.js";
-
+import { getAllProducts, getByIdProduct } from "../config/user.dao.js";
 
 const router = Router();
 
-router.get("/cart", async (req, res) => {
+// HOME → productos + carrito
+router.get("/", async (req, res) => {
   try {
-    res.render("home");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error mostrando carrito");
+    const productos = await getAllProducts();
+    res.render("home", { productos });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error cargando productos");
   }
 });
 
+// DETALLE DE PRODUCTO
+router.get("/product/:pid", async (req, res) => {
+  try {
+    const producto = await getByIdProduct(req.params.pid);
+
+    if (!producto) {
+      return res.status(404).send("Producto no encontrado");
+    }
+
+    res.render("product", { producto });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error cargando producto");
+  }
+});
+router.get("/product/:pid", async (req, res) => {
+  const producto = await getByIdProduct(req.params.pid);
+
+  if (!producto) {
+    return res.status(404).send("Producto no encontrado");
+  }
+
+  res.render("product", { producto });
+});
+// (opcional) vista carrito sola
+router.get("/cart", async (req, res) => {
+  try {
+    // Supongamos que tenés un modelo Product
+    const productos = await Product.find().lean();
+
+    res.render("realTimeProducts", { productos });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error mostrando carrito");
+  }
+});
+router.get("/cart/:cid", async (req, res) => {
+  try {
+    const { cid } = req.params;
+    const cart = await Cart.findById(cid).populate("products.product").lean();
+
+    if (!cart) return res.status(404).send("Carrito no encontrado");
+
+    // Pasamos los productos del carrito a la vista
+    res.render("realTimeProducts", { productos: cart.products.map(p => ({
+      _id: p.product._id,
+      title: p.product.title,
+      price: p.product.price,
+      quantity: p.quantity
+    })) });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error mostrando carrito");
+  }
+});
 export default router;

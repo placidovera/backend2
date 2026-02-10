@@ -18,11 +18,18 @@ export const getAllCartsController = async (req, res) => {
 
 export const getByIdCartController = async (req, res) => {
   try {
-    res.json(await getCartById(req.params.cid));
+    const cart = await getCartById(req.params.cid);
+
+    res.json({
+      _id: cart._id,
+      products: cart.products
+    });
+
   } catch (e) {
     res.status(404).json({ error: e.message });
   }
 };
+
 
 export const createCartController = async (req, res) => {
   try {

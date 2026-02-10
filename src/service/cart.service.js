@@ -1,93 +1,101 @@
-import {
-  getAllCart,
-  getByIdCart,
-  createCart,
-  deleteByIdCart,
-  upDataCart
-} from "../config/user.dao.js";
+import { Cart } from "../models/cart.model.js";
 
-/* =========================
-   OBTENER TODOS
-========================= */
+// ========================
+// OBTENER TODOS
+// ========================
 export const getAllCarts = async () => {
-  return getAllCart();
+  return Cart.find()
+    .populate("products.productId")
+    .lean();
 };
 
-/* =========================
-   OBTENER POR ID
-========================= */
+// ========================
+// OBTENER POR ID
+// ========================
 export const getCartById = async (cid) => {
-  const cart = await getByIdCart(cid);
-  if (!cart) throw new Error("CARRITO NO ENCONTRADO");
+  const cart = await Cart.findById(cid)
+    .populate("products.productId")
+    .lean();
+
+  if (!cart) throw new Error("Carrito no encontrado");
+
   return cart;
 };
 
-/* =========================
-   CREAR CARRITO
-========================= */
+// ========================
+// CREAR CARRITO
+// ========================
 export const createNewCart = async () => {
-  return createCart({ products: [] });
+  return Cart.create({ products: [] });
 };
 
-/* =========================
-   AGREGAR PRODUCTO
-========================= */
+// ========================
+// AGREGAR PRODUCTO
+// ========================
 export const addProductToCart = async (cid, pid) => {
-  const cart = await getByIdCart(cid);
-  if (!cart) throw new Error("CARRITO NO ENCONTRADO");
+  const cart = await Cart.findById(cid);
+  if (!cart) throw new Error("Carrito no encontrado");
 
-  const productIndex = cart.products.findIndex(
+  const product = cart.products.find(
     p => p.productId.toString() === pid
   );
 
-  if (productIndex !== -1) {
-    cart.products[productIndex].quantity += 1;
+  if (product) {
+    product.quantity++;
   } else {
     cart.products.push({ productId: pid, quantity: 1 });
   }
 
-  return upDataCart(cid, { products: cart.products });
+  await cart.save();
+
+  return Cart.findById(cid)
+    .populate("products.productId")
+    .lean();
 };
 
-/* =========================
-   DECREMENTAR PRODUCTO
-========================= */
+// ========================
+// DECREMENTAR
+// ========================
 export const decrementProductFromCart = async (cid, pid) => {
-  const cart = await getByIdCart(cid);
-  if (!cart) throw new Error("CARRITO NO ENCONTRADO");
+  const cart = await Cart.findById(cid);
+  if (!cart) throw new Error("Carrito no encontrado");
 
-  const productIndex = cart.products.findIndex(
+  const product = cart.products.find(
     p => p.productId.toString() === pid
   );
 
-  if (productIndex === -1) {
-    throw new Error("PRODUCTO NO ENCONTRADO EN EL CARRITO");
-  }
+  if (!product) throw new Error("Producto no encontrado");
 
-  if (cart.products[productIndex].quantity > 1) {
-    cart.products[productIndex].quantity -= 1;
-  }
+  if (product.quantity > 1) product.quantity--;
 
-  return upDataCart(cid, { products: cart.products });
+  await cart.save();
+
+  return Cart.findById(cid)
+    .populate("products.productId")
+    .lean();
 };
 
-/* =========================
-   ELIMINAR PRODUCTO
-========================= */
+// ========================
+// ELIMINAR PRODUCTO
+// ========================
 export const removeProductFromCart = async (cid, pid) => {
-  const cart = await getByIdCart(cid);
-  if (!cart) throw new Error("CARRITO NO ENCONTRADO");
+  const cart = await Cart.findById(cid);
+  if (!cart) throw new Error("Carrito no encontrado");
 
-  const products = cart.products.filter(
+  cart.products = cart.products.filter(
     p => p.productId.toString() !== pid
   );
 
-  return upDataCart(cid, { products });
+  await cart.save();
+
+  return Cart.findById(cid)
+    .populate("products.productId")
+    .lean();
 };
 
-/* =========================
-   ELIMINAR CARRITO
-========================= */
+// ========================
+// ELIMINAR CARRITO
+// ========================
 export const deleteCart = async (cid) => {
-  return deleteByIdCart(cid);
+  return Cart.findByIdAndDelete(cid);
 };

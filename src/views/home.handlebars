@@ -1,6 +1,6 @@
 <div class="app-container">
 
-  <!-- Productos -->
+  <!-- PRODUCTOS -->
   <div class="products-grid">
     {{#each productos}}
       <div class="product-card">
@@ -11,9 +11,11 @@
             <span class="category">{{this.category}}</span>
           </div>
         </div>
-         <button class="view-details" data-id="{{this._id}}">
-        Ver Detalles
-      </button>
+
+        <button class="view-details" data-id="{{this._id}}">
+          Ver Detalles
+        </button>
+
         <button class="add-to-cart" data-id="{{this._id}}">
           Agregar al carrito
         </button>
@@ -21,14 +23,21 @@
     {{/each}}
   </div>
 
-  <!-- Carrito -->
+  <!-- CARRITO -->
   <div class="cart-panel">
     <div class="cart-header">
-      <span class="cart-title">Carrito</span>
+      <span class="cart-title">🛒 Carrito</span>
     </div>
+
     <div id="cart-items" class="cart-items">
+      <!-- JS renderiza acá -->
     </div>
+
+    <button id="delete-cart" class="clear-cart">
+      Vaciar carrito
+    </button>
   </div>
 
 </div>
-<script src="/js/cart.js"></script>
+
+
