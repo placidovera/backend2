@@ -1,4 +1,4 @@
-let cartId = "6970322872bca2d4333a94b4";
+let cartId = localStorage.getItem("cartId") || null;
 let cartProducts = [];
 
 // ========================
@@ -6,9 +6,20 @@ let cartProducts = [];
 // ========================
 async function loadCart() {
   try {
+    // Si no hay cartId, creamos el carrito
+    if (!cartId) {
+      const resCreate = await fetch(`/api/cart`, { method: "POST" });
+      if (!resCreate.ok) throw new Error("No se pudo crear el carrito");
+      const dataCreate = await resCreate.json();
+      cartId = dataCreate._id;
+      localStorage.setItem("cartId", cartId);
+      console.log("Carrito creado:", cartId);
+    }
+
+    // Cargar carrito
     const res = await fetch(`/api/cart/${cartId}`);
     if (!res.ok) {
-      console.error("NO SE PUDO OBTENER EL CARRITO", res.status);
+      console.error("No se pudo obtener el carrito", res.status);
       return;
     }
 
@@ -55,15 +66,10 @@ function renderCart(products) {
 // BOTONES DEL CARRITO
 // ========================
 function bindCartButtons() {
-
   document.querySelectorAll(".increment").forEach(btn => {
     btn.onclick = async () => {
       const pid = btn.dataset.id;
-
-      await fetch(`/api/cart/${cartId}/product/${pid}`, {
-        method: "PUT"
-      });
-
+      await fetch(`/api/cart/${cartId}/product/${pid}`, { method: "PUT" });
       loadCart();
     };
   });
@@ -71,16 +77,12 @@ function bindCartButtons() {
   document.querySelectorAll(".decrement").forEach(btn => {
     btn.onclick = async () => {
       const pid = btn.dataset.id;
-
       const prod = cartProducts.find(p => p.productId._id === pid);
       if (!prod) return;
 
       if (prod.quantity > 1) {
-        await fetch(`/api/cart/${cartId}/product/${pid}`, {
-          method: "PUT"
-        });
+        await fetch(`/api/cart/${cartId}/product/${pid}`, { method: "PUT" });
       }
-
       loadCart();
     };
   });
@@ -88,21 +90,11 @@ function bindCartButtons() {
   document.querySelectorAll(".remove").forEach(btn => {
     btn.onclick = async () => {
       const pid = btn.dataset.id;
-
-      await fetch(`/api/cart/${cartId}/product/${pid}`, {
-        method: "DELETE"
-      });
-
+      await fetch(`/api/cart/${cartId}/product/${pid}`, { method: "DELETE" });
       loadCart();
     };
   });
 }
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("view-details")) {
-    const pid = e.target.dataset.id;
-    window.location.href = `/product/${pid}`;
-  }
-});
 
 // ========================
 // AGREGAR AL CARRITO (GLOBAL)
@@ -113,20 +105,31 @@ document.addEventListener("click", async (e) => {
     console.log("AGREGANDO:", pid);
 
     const res = await fetch(`/api/cart/${cartId}/product/${pid}`, {
-      method: "POST"
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantity: 1 })
     });
 
     console.log("STATUS:", res.status);
+    const data = await res.json();
+    console.log("DATA:", data);
 
     loadCart();
   }
 });
-
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("view-details")) {
+    const pid = e.target.dataset.id;
+    window.location.href = `/product/${pid}`;
+  }
+});
 // ========================
 // ELIMINAR CARRITO
 // ========================
 document.getElementById("delete-cart")?.addEventListener("click", async () => {
   await fetch(`/api/cart/${cartId}`, { method: "DELETE" });
+  localStorage.removeItem("cartId");
+  cartId = null;
   cartProducts = [];
   renderCart([]);
 });

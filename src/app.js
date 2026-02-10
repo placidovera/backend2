@@ -55,7 +55,7 @@ app.use("/api/products", prodRoutes);
 const startServer = async () => {
   await connectAuto();
   app.listen(8080, () =>
-    console.log("🔥 App running on http://localhost:8080")
+    console.log("App running on http://localhost:8080")
   );
 };
 

@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { getAllProducts, getByIdProduct } from "../config/user.dao.js";
+import { Product } from "../models/Product.js";
+import { Cart } from "../models/cart.model.js";
 
 const router = Router();
 
-// HOME → productos + carrito
 router.get("/", async (req, res) => {
   try {
     const productos = await getAllProducts();
@@ -34,14 +35,14 @@ router.get("/product/:pid", async (req, res) => {
 
   if (!producto) {
     return res.status(404).send("Producto no encontrado");
+
   }
 
   res.render("product", { producto });
 });
-// (opcional) vista carrito sola
 router.get("/cart", async (req, res) => {
   try {
-    // Supongamos que tenés un modelo Product
+
     const productos = await Product.find().lean();
 
     res.render("realTimeProducts", { productos });
