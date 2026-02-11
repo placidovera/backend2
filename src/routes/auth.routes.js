@@ -14,10 +14,12 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).select("+password");
 
-    if (!user) return res.status(401).json({ message: "Usuario no encontrado" });
+    if (!user)
+      return res.status(401).json({ message: "Usuario no encontrado" });
 
     const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) return res.status(401).json({ message: "Contraseña incorrecta" });
+    if (!isValid)
+      return res.status(401).json({ message: "Contraseña incorrecta" });
 
     const token = jwt.sign(
       { id: user._id, role: user.role },

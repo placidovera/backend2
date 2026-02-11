@@ -2,6 +2,7 @@ import { Router } from "express";
 import { getAllProducts, getByIdProduct } from "../config/user.dao.js";
 import { Product } from "../models/Product.js";
 import { Cart } from "../models/cart.model.js";
+import {authJWT} from "../middleware/middleware.js"
 
 const router = Router();
 
@@ -16,9 +17,11 @@ router.get("/form", async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.render("form"); // o el nombre real de tu vista
+  res.render("form");
 });
-router.get("/", async (req, res) => {
+
+
+router.get("/", authJWT ,async (req, res) => {
   try {
     const productos = await getAllProducts();
     res.render("home", { productos });
@@ -29,7 +32,7 @@ router.get("/", async (req, res) => {
 });
 
 
-router.get("/cart", async (req, res) => {
+router.get("/cart", authJWT,async (req, res) => {
   try {
 
     const productos = await Product.find().lean();
