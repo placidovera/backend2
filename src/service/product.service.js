@@ -6,9 +6,8 @@ import {
   deleteByIdProduct
 } from "../config/user.dao.js";
 
-/* =========================
-   MOSTRAR TODOS
-========================= */
+//MOSTRAR TODOS
+
 export const getProducts = async () => {
   try {
     return await getAllProducts();
@@ -17,9 +16,8 @@ export const getProducts = async () => {
   }
 };
 
-/* =========================
-   MOSTRAR POR ID
-========================= */
+//MOSTRAR POR ID
+
 export const getProductById = async (pid) => {
   try {
     const product = await getByIdProduct(pid);
@@ -30,9 +28,8 @@ export const getProductById = async (pid) => {
   }
 };
 
-/* =========================
-   CREAR PRODUCTO
-========================= */
+//CREAR PRODUCTO
+
 export const createNewProduct = async (data) => {
   try {
     return await createProduct(data);
@@ -41,9 +38,8 @@ export const createNewProduct = async (data) => {
   }
 };
 
-/* =========================
-   MODIFICAR PRODUCTO
-========================= */
+//MODIFICAR PRODUCTO
+
 export const updateProductById = async (pid, data) => {
   try {
     const updated = await updateProduct(pid, data);
@@ -54,9 +50,8 @@ export const updateProductById = async (pid, data) => {
   }
 };
 
-/* =========================
-   ELIMINAR PRODUCTO
-========================= */
+//ELIMINAR PRODUCTO
+
 export const deleteProductById = async (pid) => {
   try {
     const deleted = await deleteByIdProduct(pid);

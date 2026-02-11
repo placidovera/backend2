@@ -1,101 +1,80 @@
-import { Cart } from "../models/cart.model.js";
+import {
+  getAllCart,
+  getByIdCart,
+  createCart,
+  upDataCart,
+  deleteByIdCart,
+  getRawCartById 
+} from "../config/user.dao.js";
 
-// ========================
-// OBTENER TODOS
-// ========================
-export const getAllCarts = async () => {
-  return Cart.find()
-    .populate("products.productId")
-    .lean();
-};
-
-// ========================
-// OBTENER POR ID
-// ========================
-export const getCartById = async (cid) => {
-  const cart = await Cart.findById(cid)
-    .populate("products.productId")
-    .lean();
-
-  if (!cart) throw new Error("Carrito no encontrado");
-
-  return cart;
-};
-
-// ========================
-// CREAR CARRITO
-// ========================
+// CREAR NUEVO CARRITO
 export const createNewCart = async () => {
-  return Cart.create({ products: [] });
+  return createCart({ products: [] });
 };
 
-// ========================
 // AGREGAR PRODUCTO
-// ========================
 export const addProductToCart = async (cid, pid) => {
-  const cart = await Cart.findById(cid);
+  const cart = await getRawCartById(cid);
   if (!cart) throw new Error("Carrito no encontrado");
 
   const product = cart.products.find(
-    p => p.productId.toString() === pid
+    p => p.productId.toString() === pid.toString()
   );
 
   if (product) {
-    product.quantity++;
+    product.quantity += 1; 
   } else {
     cart.products.push({ productId: pid, quantity: 1 });
   }
 
-  await cart.save();
-
-  return Cart.findById(cid)
-    .populate("products.productId")
-    .lean();
+  return upDataCart(cid, cart);
 };
 
-// ========================
-// DECREMENTAR
-// ========================
+// DECREMENTAR PRODUCTO
 export const decrementProductFromCart = async (cid, pid) => {
-  const cart = await Cart.findById(cid);
+  const cart = await getRawCartById(cid);
   if (!cart) throw new Error("Carrito no encontrado");
 
-  const product = cart.products.find(
-    p => p.productId.toString() === pid
+  const productIndex = cart.products.findIndex(
+    p => p.productId.toString() === pid.toString()
   );
 
-  if (!product) throw new Error("Producto no encontrado");
+  if (productIndex === -1) throw new Error("Producto no encontrado");
 
-  if (product.quantity > 1) product.quantity--;
+  if (cart.products[productIndex].quantity > 1) {
+    cart.products[productIndex].quantity -= 1;
+  } else {
+    
+    cart.products.splice(productIndex, 1);
+  }
 
-  await cart.save();
-
-  return Cart.findById(cid)
-    .populate("products.productId")
-    .lean();
+  return upDataCart(cid, cart);
 };
 
-// ========================
 // ELIMINAR PRODUCTO
-// ========================
 export const removeProductFromCart = async (cid, pid) => {
-  const cart = await Cart.findById(cid);
+  const cart = await getRawCartById(cid);
   if (!cart) throw new Error("Carrito no encontrado");
 
   cart.products = cart.products.filter(
-    p => p.productId.toString() !== pid
+    p => p.productId.toString() !== pid.toString()
   );
 
-  await cart.save();
-
-  return Cart.findById(cid)
-    .populate("products.productId")
-    .lean();
+  return upDataCart(cid, cart);
 };
 
-// ========================
+// OBTENER CARRITO CON populate
+export const getCartById = async (cid) => {
+  const cart = await getByIdCart(cid); 
+  if (!cart) throw new Error("Carrito no encontrado");
+  return cart;
+};
+
 // ELIMINAR CARRITO
-// ========================
 export const deleteCart = async (cid) => {
-  return Cart.findByIdAndDelete(cid);
+  return deleteByIdCart(cid);
 };
+
+export const getAllCarts = async () => {
+  return getAllCart();
+}
