@@ -21,9 +21,9 @@ export const getByIdUsers = async (id) => {
 };
 
 export const createUser = async (data) => {
-  const { first_name, last_name, age, email, password, role } = data;
+  const { first_name,email, password, role } = data;
 
-  if (!first_name || !last_name || !email || !password) {
+  if (!first_name || !email || !password) {
     throw new Error("firstName, lastName, email y password son obligatorios");
   }
 
@@ -36,8 +36,6 @@ export const createUser = async (data) => {
 
   const user = await create({
     first_name,
-    last_name,
-    age,
     email,
     password: hashedPassword,
     role

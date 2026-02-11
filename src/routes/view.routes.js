@@ -5,6 +5,19 @@ import { Cart } from "../models/cart.model.js";
 
 const router = Router();
 
+router.get("/form", async (req, res) => {
+  try {
+    const productos = await getAllProducts();
+    res.render("form",);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error cargando form");
+  }
+});
+
+router.get("/login", (req, res) => {
+  res.render("form"); // o el nombre real de tu vista
+});
 router.get("/", async (req, res) => {
   try {
     const productos = await getAllProducts();
@@ -15,31 +28,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// DETALLE DE PRODUCTO
-router.get("/product/:pid", async (req, res) => {
-  try {
-    const producto = await getByIdProduct(req.params.pid);
 
-    if (!producto) {
-      return res.status(404).send("Producto no encontrado");
-    }
-
-    res.render("product", { producto });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error cargando producto");
-  }
-});
-router.get("/product/:pid", async (req, res) => {
-  const producto = await getByIdProduct(req.params.pid);
-
-  if (!producto) {
-    return res.status(404).send("Producto no encontrado");
-
-  }
-
-  res.render("product", { producto });
-});
 router.get("/cart", async (req, res) => {
   try {
 
@@ -54,20 +43,36 @@ router.get("/cart", async (req, res) => {
 router.get("/cart/:cid", async (req, res) => {
   try {
     const { cid } = req.params;
-    const cart = await Cart.findById(cid).populate("products.product").lean();
+
+    const cart = await Cart.findById(cid)
+      .populate("products.product")
+      .lean();
 
     if (!cart) return res.status(404).send("Carrito no encontrado");
 
-    // Pasamos los productos del carrito a la vista
-    res.render("realTimeProducts", { productos: cart.products.map(p => ({
+    const productos = cart.products.map(p => ({
       _id: p.product._id,
       title: p.product.title,
       price: p.product.price,
       quantity: p.quantity
-    })) });
+    }));
+console.log("PRODUCTOS:", productos);
+
+    const total = productos.reduce(
+      (acc, p) => acc + p.price * p.quantity,
+      0
+    );
+
+    res.render("realTimeProducts", {
+      productos,
+      total
+    });
+console.log("TOTAL:", total);
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Error mostrando carrito");
   }
 });
+
 export default router;

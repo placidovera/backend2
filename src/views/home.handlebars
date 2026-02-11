@@ -12,10 +12,6 @@
           </div>
         </div>
 
-        <button class="view-details" data-id="{{this._id}}">
-          Ver Detalles
-        </button>
-
         <button class="add-to-cart" data-id="{{this._id}}">
           Agregar al carrito
         </button>
@@ -33,11 +29,16 @@
       <!-- JS renderiza acá -->
     </div>
 
+    <div id="cart-total"></div>
+
+    <!-- 🔥 BOTÓN LOGOUT -->
+    <button id="logout-btn" class="clear-cart">
+      Cerrar sesión
+    </button>
+
     <button id="delete-cart" class="clear-cart">
       Vaciar carrito
     </button>
   </div>
 
 </div>
-
-

@@ -23,7 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// 🔥 ESTÁTICOS (ESTO FALTABA)
 app.use(express.static(path.join(process.cwd(), "src", "public")));
 
 // =======================

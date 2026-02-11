@@ -1,0 +1,391 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f4f3;
+    transition: background-color 0.5s ease;
+}
+.container{
+    width: 800px;
+    height: 500px;
+    display: flex;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgb(0,0,0,0.3);
+}
+.container-form{
+display: flex;
+width: 100%;
+overflow: hidden;
+
+}
+.container-form form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition:transform 0.5s ease-in;
+}
+.container-form h2{
+font-size: 30px;
+margin-bottom: 20px;
+}
+.social-networks{
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.social-networks ion-icon{
+    border: solid #c9cccb;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+}
+.container-form span{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.container-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   gap: 8px;
+   padding: 0 15px;
+   background-color: #eeeeee;
+}
+.container-input input{
+width: 100%;
+border: none;
+outline: none;
+height: 100%;
+background-color: inherit;
+}
+.container-form a{
+    color: black;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #3ab397;
+    color: white;
+}
+/*Animacion Form*/
+.sign-up{
+transform: translateX(-100%);
+}
+.container.toggle .sign-in{
+transform: translateX(100%);
+}
+.container.toggle .sign-up{
+transform: translateX(0);
+}
+/*Welcome*/
+.container-welcome{
+background-color: #3ab397;
+position: absolute;
+width: 50%;
+height: 100%;
+display: flex;
+align-items: center;
+transform: translateX(100%);
+overflow: hidden;
+transition:transform 0.5s ease-in-out,border-radius 0.5s ease-in-out;
+border-radius: 50% 0 0 50%;
+}
+.container.toggle .container-welcome{
+    transform: translateX(0);
+    border-radius: 0 50% 50% 0;
+    background-color: #3aa8ad;
+}
+.container-welcome .welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition:transform 0.5s ease-in-out;
+}
+.welcome-sign-in{
+    transform: translateX(100%);
+}
+.container-welcome h3{
+font-size: 40px;
+}
+.container-welcome p{
+font-size: 14px;
+text-align: center;
+}
+.container-welcome button{
+border: 2px solid white;
+background-color: transparent;
+}
+.container.toggle .welcome-sign-in{
+    transform: translateX(0);
+}
+.container.toggle .welcome-sign-up{
+    transform: translateX(-100%);
+}*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --dark-mode-width: 100px;
+    --dark-mode-height: 40px;
+}
+body.active{
+    background-color: #2a2a2b;
+}
+.dark-mode{
+    cursor: pointer;
+    width: var(--dark-mode-width);
+    height: var(--dark-mode-height);
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    background-color: #dfdede;
+    transition: background-color 0.5s ease;
+}
+.dark-mode .circle{
+width: 40%;
+height: 80%;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: white;
+transform: translateX(10%);
+position: relative;
+overflow: hidden;
+transition: transform 0.5s ease,background-color 0.5s ease;
+}
+body.active .dark-mode{
+    background-color: white;
+}
+body.active .circle{
+    transform: translateX(140%);
+    background-color: #2a2a2c;
+}
+.dark-mode .circle ion-icon{
+width: 70%;
+height: 70%;
+position: absolute;
+transition: transform 0.5s ease;
+}
+
+.dark-mode .circle .moon{
+    transform: translateY(-120%);
+    color: white;
+}
+.dark-mode .circle .sun{
+    color: #fcde5b;
+}
+body.active .circle .moon{
+    transform: translateX(0);
+}
+body.active .circle .sun{
+    transform: translatey(120%);
+}
+.dark{
+    margin-top: 100px;
+    padding: 20px;
+}
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BODY */
+body {
+  background-color: #ebebeb;
+  color: #333;
+}
+
+/* CONTENEDOR GENERAL */
+.app-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  padding: 20px 40px;
+}
+
+/* ============================= */
+/* PRODUCTOS */
+/* ============================= */
+html, body {
+  width: 100%;
+  overflow-x: hidden;   
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  transition: 0.2s ease;
+  border: 1px solid #ddd;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.product-title {
+  font-size: 15px;
+  margin-bottom: 10px;
+  min-height: 40px;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00a650; /* verde ML */
+}
+
+.category {
+  font-size: 12px;
+  color: #999;
+}
+
+/* BOTÓN AGREGAR */
+.add-to-cart {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffe600; /* amarillo ML */
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #ffd100;
+}
+
+/* ============================= */
+/* CARRITO */
+/* ============================= */
+
+.cart-panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.cart-header {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.cart-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-items {
+ display: flex;
+}
+
+.cart-row {
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* TOTAL */
+#cart-total {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* BOTONES CARRITO */
+.clear-cart {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+/* Logout */
+#logout-btn {
+  background-color: #3483fa; /* azul ML */
+  color: white;
+}
+
+#logout-btn:hover {
+  background-color: #2968c8;
+}
+
+/* Vaciar carrito */
+#delete-cart {
+  background-color: #e60023;
+  color: white;
+}
+
+#delete-cart:hover {
+  background-color: #c4001d;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-panel {
+    position: static;
+  }
+}

@@ -6,7 +6,6 @@ let cartProducts = [];
 // ========================
 async function loadCart() {
   try {
-    // Si no hay cartId, creamos el carrito
     if (!cartId) {
       const resCreate = await fetch(`/api/cart`, { method: "POST" });
       if (!resCreate.ok) throw new Error("No se pudo crear el carrito");
@@ -34,15 +33,14 @@ async function loadCart() {
   }
 }
 
-// ========================
-// RENDERIZAR CARRITO
-// ========================
 function renderCart(products) {
   const cartItemsEl = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
   if (!cartItemsEl) return;
 
   if (products.length === 0) {
     cartItemsEl.innerHTML = "<p>Carrito vacío</p>";
+    if (totalEl) totalEl.innerHTML = "";
     return;
   }
 
@@ -52,41 +50,28 @@ function renderCart(products) {
         ${p.productId.title} — $${p.productId.price} x ${p.quantity}
       </div>
       <div class="controls">
-        <button class="increment" data-id="${p.productId._id}">+</button>
-        <button class="decrement" data-id="${p.productId._id}">-</button>
         <button class="remove" data-id="${p.productId._id}">Eliminar</button>
       </div>
     </div>
   `).join("");
 
+  const total = products.reduce(
+    (acc, p) => acc + p.productId.price * p.quantity,
+    0
+  );
+
+  if (totalEl) {
+    totalEl.innerHTML = `<h3>Total: $${total}</h3>`;
+  }
+
   bindCartButtons();
 }
 
+
 // ========================
-// BOTONES DEL CARRITO
+// BOTON DEL CARRITO
 // ========================
 function bindCartButtons() {
-  document.querySelectorAll(".increment").forEach(btn => {
-    btn.onclick = async () => {
-      const pid = btn.dataset.id;
-      await fetch(`/api/cart/${cartId}/product/${pid}`, { method: "PUT" });
-      loadCart();
-    };
-  });
-
-  document.querySelectorAll(".decrement").forEach(btn => {
-    btn.onclick = async () => {
-      const pid = btn.dataset.id;
-      const prod = cartProducts.find(p => p.productId._id === pid);
-      if (!prod) return;
-
-      if (prod.quantity > 1) {
-        await fetch(`/api/cart/${cartId}/product/${pid}`, { method: "PUT" });
-      }
-      loadCart();
-    };
-  });
-
   document.querySelectorAll(".remove").forEach(btn => {
     btn.onclick = async () => {
       const pid = btn.dataset.id;
@@ -97,7 +82,7 @@ function bindCartButtons() {
 }
 
 // ========================
-// AGREGAR AL CARRITO (GLOBAL)
+// AGREGAR AL CARRITO
 // ========================
 document.addEventListener("click", async (e) => {
   if (e.target.classList.contains("add-to-cart")) {
@@ -133,8 +118,17 @@ document.getElementById("delete-cart")?.addEventListener("click", async () => {
   cartProducts = [];
   renderCart([]);
 });
+const logoutBtn = document.getElementById("logout-btn");
 
-// ========================
-// INIT
-// ========================
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await fetch("/api/auth/logout", {
+      method: "POST"
+    });
+
+    window.location.href = "/login";
+  });
+}
+
+//INIT
 window.addEventListener("DOMContentLoaded", loadCart);

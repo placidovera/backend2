@@ -1,40 +1,9 @@
-<h1 class="page-title">Lista de productos</h1>
-
-<div class="products-grid">
-  {{#each productos}}
-    <div class="product-card">
-
-      <div class="product-title">{{this.title}}</div>
-
-      <div class="product-meta">
-        <span class="price">$ {{this.price}}</span>
-      </div>
-
-      <!-- BOTÓN: agregar al carrito -->
-      <button class="add-to-cart" data-id="{{this._id}}">
-        Agregar al carrito
-      </button>
-
-      <!-- BOTÓN: ver detalles -->
-      <button class="view-details" data-id="{{this._id}}">
-        Ver detalles
-      </button>
-
-      <!-- BOTÓN: eliminar 1 producto del carrito -->
-      <button class="remove remove-from-cart" data-id="{{this._id}}">
-        Eliminar producto del carrito
-      </button>
-
-    </div>
-  {{/each}}
-</div>
 
 <div class="cart-panel">
   <h2>Carrito</h2>
   <div id="cart-items"></div>
-
-
-  <!--BOTÓN NUEVO: ELIMINAR CARRITO COMPLETO -->
+  <div id="cart-total"></div>
+  <!--BOTÓN ELIMINAR CARRITO COMPLETO -->
   <button id="delete-cart">Eliminar carrito</button>
 </div>
 
