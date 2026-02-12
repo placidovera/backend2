@@ -47,7 +47,7 @@ if (loginForm) {
       }
 
       alert("Login exitoso 🎉");
-      window.location.href = "/";
+      window.location.href = "/home";
 
     } catch (error) {
       console.error(error);

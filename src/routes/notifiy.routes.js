@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createMailer } from "../config/email.js";
-import { Cart } from "../models/cart.model.js";
+import { getCartById } from "../service/cart.service.js";
 
 const router = Router();
 
@@ -11,9 +11,8 @@ router.post("/email", async (req, res) => {
     if (!cartId) {
       return res.status(400).json({ error: "CartId requerido" });
     }
-
-    const cart = await Cart.findById(cartId)
-      .populate("products.productId");
+      // Obtener carrito desde el servicio
+    const cart = await getCartById(cartId);
 
     if (!cart) {
       return res.status(404).json({ error: "Carrito no encontrado" });

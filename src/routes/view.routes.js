@@ -6,7 +6,7 @@ import {authJWT} from "../middleware/middleware.js"
 
 const router = Router();
 
-router.get("/form", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const productos = await getAllProducts();
     res.render("form",);
@@ -21,7 +21,7 @@ router.get("/login", (req, res) => {
 });
 
 
-router.get("/", authJWT ,async (req, res) => {
+router.get("/home", authJWT ,async (req, res) => {
   try {
     const productos = await getAllProducts();
     res.render("home", { productos });
