@@ -3,7 +3,6 @@ import {
   getCartById,
   createNewCart,
   addProductToCart,
-  decrementProductFromCart,
   removeProductFromCart,
   deleteCart
 } from "../service/cart.service.js";

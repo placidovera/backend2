@@ -1,9 +1,8 @@
 let cartId = localStorage.getItem("cartId") || null;
 let cartProducts = [];
 
-// ========================
 // CARGAR CARRITO
-// ========================
+
 async function loadCart() {
   try {
     if (!cartId) {
@@ -15,7 +14,6 @@ async function loadCart() {
       console.log("Carrito creado:", cartId);
     }
 
-    // Cargar carrito
     const res = await fetch(`/api/cart/${cartId}`);
     if (!res.ok) {
       console.error("No se pudo obtener el carrito", res.status);
@@ -68,9 +66,8 @@ function renderCart(products) {
 }
 
 
-// ========================
-// BOTON DEL CARRITO
-// ========================
+// BOTON ELIMINAR DEL CARRITO
+
 function bindCartButtons() {
   document.querySelectorAll(".remove").forEach(btn => {
     btn.onclick = async () => {
@@ -81,9 +78,8 @@ function bindCartButtons() {
   });
 }
 
-// ========================
 // AGREGAR AL CARRITO
-// ========================
+
 document.addEventListener("click", async (e) => {
   if (e.target.classList.contains("add-to-cart")) {
     const pid = e.target.dataset.id;
@@ -108,9 +104,8 @@ document.addEventListener("click", (e) => {
     window.location.href = `/product/${pid}`;
   }
 });
-// ========================
 // ELIMINAR CARRITO
-// ========================
+
 document.getElementById("delete-cart")?.addEventListener("click", async () => {
   await fetch(`/api/cart/${cartId}`, { method: "DELETE" });
   localStorage.removeItem("cartId");
@@ -129,6 +124,36 @@ if (logoutBtn) {
     window.location.href = "/login";
   });
 }
+document.getElementById("checkout")?.addEventListener("click", async () => {
+  try {
+    const res = await fetch("/api/notify/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ cartId })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("✅ Gracias por su compra. Email enviado correctamente.");
+  await fetch(`/api/cart/${cartId}`, { method: "DELETE" });
+  localStorage.removeItem("cartId");
+  cartId = null;
+  cartProducts = [];
+  renderCart([])
+
+    } else {
+      alert("Error al enviar el email");
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Error inesperado");
+  }
+});
+
 
 //INIT
 window.addEventListener("DOMContentLoaded", loadCart);

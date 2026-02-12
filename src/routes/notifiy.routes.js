@@ -1,36 +1,76 @@
 import { Router } from "express";
-import { createMailer} from "../config/email.js";
+import { createMailer } from "../config/email.js";
+import { Cart } from "../models/cart.model.js";
+
 const router = Router();
-router.get("/email", async (req, res) => {
+
+router.post("/email", async (req, res) => {
   try {
-    console.log("👉 Creando transporter...");
+    const { cartId } = req.body;
+
+    if (!cartId) {
+      return res.status(400).json({ error: "CartId requerido" });
+    }
+
+    const cart = await Cart.findById(cartId)
+      .populate("products.productId");
+
+    if (!cart) {
+      return res.status(404).json({ error: "Carrito no encontrado" });
+    }
+
+    let total = 0;
+
+    const productsHTML = cart.products.map(item => {
+      const subtotal = item.productId.price * item.quantity;
+      total += subtotal;
+
+      return `
+        <tr>
+          <td>${item.productId.title}</td>
+          <td>${item.quantity}</td>
+          <td>$${item.productId.price}</td>
+          <td>$${subtotal}</td>
+        </tr>
+      `;
+    }).join("");
+
+    const htmlContent = `
+      <h2>🛒 Gracias por tu compra</h2>
+      <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${productsHTML}
+        </tbody>
+      </table>
+      <h3>Total: $${total}</h3>
+    `;
+
     const transporter = createMailer();
 
-    console.log("👉 Enviando mail...");
     const info = await transporter.sendMail({
-      from: `"Hola, este es un mensaje automatico" <${process.env.MAIL_USER}>`,
+      from: `"Tienda Online" <${process.env.MAIL_USER}>`,
       to: "pmartin_vera@live.com",
-      subject: "Martin Vera",
-      text: "Hello world?",
-      html: "<b>Gracias por su compra</b>",
+      subject: "Resumen de tu compra",
+      html: htmlContent
     });
-
-    console.log("📨 Resultado completo:", info);
 
     res.json({
       status: "ok",
-      response: info.response,
-      messageId: info.messageId,
+      messageId: info.messageId
     });
 
   } catch (error) {
-    console.error("❌ ERROR REAL:", error);
-    res.status(500).json({
-      message: error.message,
-      code: error.code,
-    });
+    console.error("ERROR MAIL:", error);
+    res.status(500).json({ error: error.message });
   }
 });
-
 
 export default router;

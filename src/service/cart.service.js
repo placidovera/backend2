@@ -30,27 +30,6 @@ export const addProductToCart = async (cid, pid) => {
   return upDataCart(cid, cart);
 };
 
-// DECREMENTAR PRODUCTO
-export const decrementProductFromCart = async (cid, pid) => {
-  const cart = await getRawCartById(cid);
-  if (!cart) throw new Error("Carrito no encontrado");
-
-  const productIndex = cart.products.findIndex(
-    p => p.productId.toString() === pid.toString()
-  );
-
-  if (productIndex === -1) throw new Error("Producto no encontrado");
-
-  if (cart.products[productIndex].quantity > 1) {
-    cart.products[productIndex].quantity -= 1;
-  } else {
-    
-    cart.products.splice(productIndex, 1);
-  }
-
-  return upDataCart(cid, cart);
-};
-
 // ELIMINAR PRODUCTO
 export const removeProductFromCart = async (cid, pid) => {
   const cart = await getRawCartById(cid);
@@ -74,7 +53,7 @@ export const getCartById = async (cid) => {
 export const deleteCart = async (cid) => {
   return deleteByIdCart(cid);
 };
-
+// OBTENER CARRITO 
 export const getAllCarts = async () => {
   return getAllCart();
 }

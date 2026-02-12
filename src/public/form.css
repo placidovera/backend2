@@ -234,21 +234,19 @@ body {
   color: #333;
 }
 
-/* CONTENEDOR GENERAL */
 .app-container {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 1fr; /* Para pantallas grandes */
   gap: 20px;
   padding: 20px 40px;
 }
 
-/* ============================= */
-/* PRODUCTOS */
-/* ============================= */
-html, body {
-  width: 100%;
-  overflow-x: hidden;   
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
+
 
 .product-card {
   background: #fff;
@@ -279,7 +277,7 @@ html, body {
 .price {
   font-size: 20px;
   font-weight: bold;
-  color: #00a650; /* verde ML */
+  color: #00a650;
 }
 
 .category {
@@ -291,7 +289,7 @@ html, body {
 .add-to-cart {
   width: 100%;
   padding: 10px;
-  background-color: #ffe600; /* amarillo ML */
+  background-color: #ffe600; 
   border: none;
   border-radius: 6px;
   font-weight: bold;
@@ -303,10 +301,7 @@ html, body {
   background-color: #ffd100;
 }
 
-/* ============================= */
-/* CARRITO */
-/* ============================= */
-
+/*CARRITO */
 .cart-panel {
   background: #fff;
   border-radius: 8px;
@@ -339,7 +334,6 @@ html, body {
   border-bottom: 1px solid #f0f0f0;
 }
 
-/* TOTAL */
 #cart-total {
   font-size: 18px;
   font-weight: bold;
@@ -359,16 +353,17 @@ html, body {
   transition: 0.2s ease;
 }
 
-/* Logout */
 #logout-btn {
-  background-color: #3483fa; /* azul ML */
+  background-color: #3483fa; 
   color: white;
 }
 
 #logout-btn:hover {
   background-color: #2968c8;
 }
-
+#checkout:hover {
+  background-color: #5948a8;
+}
 /* Vaciar carrito */
 #delete-cart {
   background-color: #e60023;
@@ -379,13 +374,3 @@ html, body {
   background-color: #c4001d;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .app-container {
-    grid-template-columns: 1fr;
-  }
-
-  .cart-panel {
-    position: static;
-  }
-}

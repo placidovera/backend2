@@ -1,3 +1,4 @@
+// MOTION EFFECT
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".container");
     const btnSignIn = document.getElementById("btn-sign-in");
@@ -11,16 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
         container.classList.add("toggle");
     });
 });
-
+//DARK MODE
 const darkMode = document.querySelector(".dark-mode");
 const body = document.body;
 darkMode.addEventListener("click", () => {
     body.classList.toggle("active");
 });
 
-// ==============================
 // LOGIN
-// ==============================
+
 const loginForm = document.querySelector(".sign-in");
 
 if (loginForm) {
@@ -56,9 +56,8 @@ if (loginForm) {
   });
 }
 
-// ==============================
 // REGISTER
-// ==============================
+
 const registerForm = document.querySelector(".sign-up");
 
 if (registerForm) {
@@ -69,7 +68,7 @@ if (registerForm) {
     const data = Object.fromEntries(formData);
 
     try {
-      const res = await fetch("/api/users/register", {   // ✅ RUTA CORREGIDA
+      const res = await fetch("/api/users/register", {   
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -6,9 +6,8 @@ import { User } from "../models/user.model.js";
 const router = Router();
 const JWT_SECRET = "mi_clave_secreta_jwt";
 
-// =======================
 // LOGIN
-// =======================
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
