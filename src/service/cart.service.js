@@ -4,8 +4,8 @@ import {
   createCart,
   upDataCart,
   deleteByIdCart,
-  getRawCartById 
-} from "../config/user.dao.js";
+  getRawCartById
+} from "../config/dao.js";
 
 // CREAR NUEVO CARRITO
 export const createNewCart = async () => {
@@ -17,12 +17,12 @@ export const addProductToCart = async (cid, pid) => {
   const cart = await getRawCartById(cid);
   if (!cart) throw new Error("Carrito no encontrado");
 
-  const product = cart.products.find(
+  const productInCart = cart.products.find(
     p => p.productId.toString() === pid.toString()
   );
 
-  if (product) {
-    product.quantity += 1; 
+  if (productInCart) {
+    productInCart.quantity += 1;
   } else {
     cart.products.push({ productId: pid, quantity: 1 });
   }
@@ -42,10 +42,13 @@ export const removeProductFromCart = async (cid, pid) => {
   return upDataCart(cid, cart);
 };
 
-// OBTENER CARRITO CON populate
+// OBTENER CARRITO PARA RENDER 
 export const getCartById = async (cid) => {
   const cart = await getByIdCart(cid); 
   if (!cart) throw new Error("Carrito no encontrado");
+
+  cart.products = cart.products.filter(p => p.productId != null);
+
   return cart;
 };
 
@@ -53,7 +56,8 @@ export const getCartById = async (cid) => {
 export const deleteCart = async (cid) => {
   return deleteByIdCart(cid);
 };
-// OBTENER CARRITO 
+
+// OBTENER TODOS LOS CARRITOS
 export const getAllCarts = async () => {
   return getAllCart();
-}
+};

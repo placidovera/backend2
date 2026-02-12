@@ -11,7 +11,6 @@ router.post("/email", async (req, res) => {
     if (!cartId) {
       return res.status(400).json({ error: "CartId requerido" });
     }
-      // Obtener carrito desde el servicio
     const cart = await getCartById(cartId);
 
     if (!cart) {

@@ -236,7 +236,7 @@ body {
 
 .app-container {
   display: grid;
-  grid-template-columns: 3fr 1fr; /* Para pantallas grandes */
+  grid-template-columns: 3fr 1fr; 
   gap: 20px;
   padding: 20px 40px;
 }
@@ -301,27 +301,27 @@ body {
   background-color: #ffd100;
 }
 .perfil-panel {
-  position: fixed;        /* fijo sobre la pantalla */
-  top: 20px;              /* desde arriba */
-  right: 20px;            /* desde la derecha */
+  position: fixed;      
+  top: 20px;            
+  right: 20px;           
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ddd;
   padding: 10px;
-  width: 150px;           /* tamaño pequeño */
+  width: 250px;          
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 1000;          /* siempre arriba */
+  z-index: 1000;         
   text-align: center;
 }
 
 .perfil-panel button {
-  font-size: 0.9rem;      /* botón pequeño */
+  font-size: 0.9rem;      
   padding: 5px 10px;
 }
 
 #perfil-items {
   margin-top: 10px;
-  font-size: 0.85rem;     /* texto más pequeño */
+  font-size: 0.85rem;     
   text-align: left;
 }
 
@@ -391,7 +391,7 @@ body {
 #checkout:hover {
   background-color: #5948a8;
 }
-/* Vaciar carrito */
+
 #delete-cart {
   background-color: #e60023;
   color: white;

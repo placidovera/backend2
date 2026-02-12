@@ -6,10 +6,9 @@ import {
   deleteById,
   upData,
   getUserByEmail
-} from "../config/user.dao.js";
+} from "../config/dao.js";
 
 //USERS
-
 export const getAllUsers = async () => {
   return getAll();
 };
@@ -24,7 +23,7 @@ export const createUser = async (data) => {
   const { first_name,email, password, role } = data;
 
   if (!first_name || !email || !password) {
-    throw new Error("firstName, lastName, email y password son obligatorios");
+    throw new Error("firstName, email y password son obligatorios");
   }
 
   const emailExist = await getUserByEmail(email);
@@ -45,7 +44,6 @@ export const createUser = async (data) => {
 };
 
 //LOGIN
-
 export const loginUser = async (data) => {
   const { email, password } = data;
 
@@ -67,7 +65,6 @@ export const loginUser = async (data) => {
 };
 
 // DELETE / UPDATE
-
 export const deleteUsers = async (id) => {
   return deleteById(id);
 };

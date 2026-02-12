@@ -18,8 +18,8 @@ router.post("/", createCartController);
 router.delete("/:cid", deleteCartController);
 
 // Productos en carrito
-router.post("/:cid/product/:pid", addProductController);      // agregar / incrementar
-router.put("/:cid/product/:pid", decrementProductController); // decrementar
-router.delete("/:cid/product/:pid", removeProductController); // eliminar
+router.post("/:cid/product/:pid", addProductController);    
+router.put("/:cid/product/:pid", decrementProductController); 
+router.delete("/:cid/product/:pid", removeProductController); 
 
 export default router;

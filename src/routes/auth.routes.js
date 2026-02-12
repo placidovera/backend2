@@ -7,7 +7,6 @@ const router = Router();
 const JWT_SECRET = "mi_clave_secreta_jwt";
 
 // LOGIN
-
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -41,9 +40,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// =======================
 // LOGOUT
-// =======================
 router.post("/logout", (req, res) => {
   try {
     res.clearCookie("token", { httpOnly: true });

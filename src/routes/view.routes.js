@@ -1,7 +1,5 @@
 import { Router } from "express";
-import { getAllProducts, getByIdProduct } from "../config/user.dao.js";
-import { Product } from "../models/Product.js";
-import { Cart } from "../models/cart.model.js";
+import { getAllProducts, getByIdCart} from "../config/dao.js";
 import {authJWT} from "../middleware/middleware.js"
 
 const router = Router();
@@ -35,7 +33,7 @@ router.get("/home", authJWT ,async (req, res) => {
 router.get("/cart", authJWT,async (req, res) => {
   try {
 
-    const productos = await Product.find().lean();
+    const productos = await getAllProducts()
 
     res.render("realTimeProducts", { productos });
   } catch (error) {
@@ -47,10 +45,8 @@ router.get("/cart/:cid", async (req, res) => {
   try {
     const { cid } = req.params;
 
-    const cart = await Cart.findById(cid)
-      .populate("products.product")
-      .lean();
-
+    const cart = await getByIdCart(cid)
+     
     if (!cart) return res.status(404).send("Carrito no encontrado");
 
     const productos = cart.products.map(p => ({
