@@ -11,9 +11,12 @@ import viewRouter from "./routes/view.routes.js";
 import cartRouter from "./routes/cart.routes.js";
 import prodRoutes from "./routes/product.routes.js";
 import sessionRoutes from "./routes/session.routes.js";
+import notifyRoutes from "./routes/notifiy.routes.js"
 
 import { connectAuto } from "./config/conect.config.js";
-
+import dotenv from "dotenv";
+dotenv.config();
+import cors from "cors"
 const app = express();
 
 // =======================
@@ -22,6 +25,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors())
 
 app.use(express.static(path.join(process.cwd(), "src", "public")));
 
@@ -47,7 +51,7 @@ app.use("/api/users", userRoutes);
 app.use("/session", sessionRoutes);
 app.use("/api/cart", cartRouter);
 app.use("/api/products", prodRoutes);
-
+app.use("/api/notify",notifyRoutes)
 // =======================
 // SERVER
 // =======================
@@ -59,3 +63,4 @@ const startServer = async () => {
 };
 
 startServer();
+//ttmu smxs azsl veek
