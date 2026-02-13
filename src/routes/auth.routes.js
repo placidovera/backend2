@@ -19,14 +19,17 @@ router.post("/login", async (req, res) => {
     if (!isValid)
       return res.status(401).json({ message: "Contraseña incorrecta" });
 
-   const token = jwt.sign(
-  { id: user._id, role: user.role },
+   const token =jwt.sign(
+  {
+    id: user._id,
+    role: user.role,
+    cartId: user.cartId 
+  },
   process.env.JWT_SECRET,
   { expiresIn: "1h" }
 );
 
 
-    // Guardar cookie
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 3600000 

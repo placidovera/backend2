@@ -2,7 +2,6 @@ import passport from "passport";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import { User } from "../models/user.model.js";
 
-const JWT_SECRET = "mi_clave_secreta_jwt";
 
 const cookieExtractor = req => {
   return req?.cookies?.token || null;
@@ -15,7 +14,7 @@ const initializePassport = () => {
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-        secretOrKey: JWT_SECRET
+        secretOrKey: process.env.JWT_SECRET
       },
       async (payload, done) => {
         try {
