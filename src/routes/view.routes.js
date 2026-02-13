@@ -21,6 +21,14 @@ router.get("/login", (req, res) => {
 });
 
 /* ===========================
+   🔐 RESET PASSWORD VIEW
+=========================== */
+router.get("/reset-password/:token", (req, res) => {
+  const { token } = req.params;
+  res.render("resetPassword", { token });
+});
+
+/* ===========================
    HOME (requiere login)
 =========================== */
 router.get("/home", authJWT, async (req, res) => {
@@ -57,7 +65,6 @@ router.get(
     try {
       const { cid } = req.params;
 
-      // 🔐 Si es usuario común, solo puede ver su carrito
       if (req.user.role === "user" && req.user.cartId !== cid) {
         return res.status(403).send("No podés ver este carrito");
       }

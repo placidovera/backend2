@@ -92,3 +92,40 @@ if (registerForm) {
     }
   });
 }
+// RECUPERAR CONTRASEÑA
+
+const recoverBtn = document.getElementById("recover-password-btn");
+
+if (recoverBtn) {
+  recoverBtn.addEventListener("click", async () => {
+
+    const emailInput = document.querySelector('.sign-in input[name="email"]');
+    const email = emailInput.value;
+
+    if (!email) {
+      alert("Ingresá tu email primero");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (!res.ok) {
+        alert("Error al enviar solicitud");
+        return;
+      }
+
+      alert("Si el email existe, se enviará un enlace de recuperación 📧");
+
+    } catch (error) {
+      console.error(error);
+      alert("Error del servidor");
+    }
+  });
+}
