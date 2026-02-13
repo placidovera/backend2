@@ -1,16 +1,12 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { getUserByEmail } from "../config/dao.js";
-import { User } from "../models/user.model.js";
+import { getUserByEmail,upData } from "../config/dao.js";
 import { createMailer } from "../config/email.js";
 
 const router = Router();
 
-/* =====================================================
-   🔐 LOGIN
-===================================================== */
-
+/* LOGIN */
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -54,17 +50,13 @@ router.get("/reset-password/:token", (req, res) => {
   res.render("resetPassword", { token });
 });
 
-/* =====================================================
-   📧 SOLICITAR RECUPERACIÓN
-===================================================== */
-
+/* SOLICITAR RECUPERACIÓN*/
 router.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
 
     const user = await getUserByEmail(email);
 
-    // Nunca revelar si existe o no
     if (!user) {
       return res.json({
         message: "Si el email existe, se enviará un enlace de recuperación"
@@ -103,10 +95,7 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
-/* =====================================================
-   🔄 RESTABLECER CONTRASEÑA
-===================================================== */
-
+/* RESTABLECER CONTRASEÑA */
 router.post("/reset-password/:token", async (req, res) => {
   try {
     const { token } = req.params;
@@ -116,7 +105,7 @@ router.post("/reset-password/:token", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.findByIdAndUpdate(decoded.id, {
+    await upData(decoded.id, {
       password: hashedPassword
     });
 
@@ -127,10 +116,7 @@ router.post("/reset-password/:token", async (req, res) => {
   }
 });
 
-/* =====================================================
-   🚪 LOGOUT
-===================================================== */
-
+/* LOGOUT */
 router.post("/logout", (req, res) => {
   try {
     res.clearCookie("token", { httpOnly: true });

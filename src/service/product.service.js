@@ -50,11 +50,7 @@ export const updateProductById = async (pid, data) => {
 
 //ELIMINAR PRODUCTO
 export const deleteProductById = async (pid) => {
-  try {
-    const deleted = await deleteByIdProduct(pid);
-    if (!deleted) throw new Error("PRODUCTO NO ENCONTRADO");
-    return deleted;
-  } catch (error) {
-    throw error;
-  }
+  const deleted = await deleteByIdProduct(pid);
+  if (!deleted) throw new Error("PRODUCTO NO ENCONTRADO");
+  return deleted;
 };

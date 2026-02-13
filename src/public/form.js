@@ -55,9 +55,7 @@ if (loginForm) {
     }
   });
 }
-
 // REGISTER
-
 const registerForm = document.querySelector(".sign-up");
 
 if (registerForm) {
@@ -67,12 +65,13 @@ if (registerForm) {
     const formData = new FormData(registerForm);
     const data = Object.fromEntries(formData);
 
+    const adminCheckbox = document.getElementById("adminCheck");
+    data.isAdmin = adminCheckbox ? adminCheckbox.checked : false;
+
     try {
-      const res = await fetch("/api/users/register", {   
+      const res = await fetch("/api/users/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
 
@@ -83,7 +82,7 @@ if (registerForm) {
         return;
       }
 
-      alert("Usuario creado correctamente 🎉");
+      alert("Usuario creado correctamente");
       registerForm.reset();
 
     } catch (error) {
@@ -92,6 +91,7 @@ if (registerForm) {
     }
   });
 }
+
 // RECUPERAR CONTRASEÑA
 
 const recoverBtn = document.getElementById("recover-password-btn");
@@ -121,7 +121,7 @@ if (recoverBtn) {
         return;
       }
 
-      alert("Si el email existe, se enviará un enlace de recuperación 📧");
+      alert("Si el email existe, se enviará un enlace de recuperación");
 
     } catch (error) {
       console.error(error);

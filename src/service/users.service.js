@@ -20,7 +20,7 @@ export const getByIdUsers = async (id) => {
 };
 
 export const createUser = async (data) => {
-  const { first_name,email, password, role } = data;
+  const { first_name, email, password, isAdmin } = data;
 
   if (!first_name || !email || !password) {
     throw new Error("firstName, email y password son obligatorios");
@@ -33,6 +33,8 @@ export const createUser = async (data) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
+  const role = isAdmin ? "admin" : "user";
+
   const user = await create({
     first_name,
     email,
@@ -42,6 +44,7 @@ export const createUser = async (data) => {
 
   return user;
 };
+
 
 //LOGIN
 export const loginUser = async (data) => {
