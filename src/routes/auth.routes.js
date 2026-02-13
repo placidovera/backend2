@@ -1,16 +1,16 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { User } from "../models/user.model.js";
+import { getUserByEmail} from "../config/dao.js";
 
 const router = Router();
-const JWT_SECRET = "mi_clave_secreta_jwt";
 
 // LOGIN
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email }).select("+password");
+
+    const user = await getUserByEmail(email);
 
     if (!user)
       return res.status(401).json({ message: "Usuario no encontrado" });
@@ -19,17 +19,20 @@ router.post("/login", async (req, res) => {
     if (!isValid)
       return res.status(401).json({ message: "Contraseña incorrecta" });
 
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+   const token = jwt.sign(
+  { id: user._id, role: user.role },
+  process.env.JWT_SECRET,
+  { expiresIn: "1h" }
+);
 
+
+    // Guardar cookie
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 3600000
+      maxAge: 3600000 
     });
 
+    // Respuesta
     res.json({
       message: "Login exitoso",
       user: { id: user._id, email: user.email, role: user.role }
