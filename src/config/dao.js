@@ -1,6 +1,5 @@
 import { User } from "../models/user.model.js";
-import { Cart } from "../models/cart.model.js";
-import { Product } from "../models/Product.js";
+import { Pets } from "../models/Pets.js";
 
 /* USERS */
 export const getAll = async () => User.find().lean();
@@ -16,27 +15,15 @@ export const upData = async (id, data) => User.findByIdAndUpdate(id, data, { new
 export const getUserByEmail = async (email) => User.findOne({ email }).select("+password");;
 
 
-/* CART */
-export const getAllCart = async () => Cart.find().populate("products.productId");
 
-export const getByIdCart = async (id) => Cart.findById(id).populate("products.productId");
+/* PETS */
+export const getAllPets = async () => Pets.find().lean();
 
-export const createCart = async (data) => Cart.create(data);
+export const getByIdPets = async (id)=> Pets.findById(id).lean();
 
-export const deleteByIdCart = async (id) => Cart.findByIdAndDelete(id);
+export const createPets = async (data) => Pets.create(data);
 
-export const upDataCart = async (id, data) => Cart.findByIdAndUpdate(id, data, { new: true });
+export const deleteByIdPets = async (id) => Pets.findByIdAndDelete(id);
 
-export const getRawCartById = async (id) => Cart.findById(id);
-
-/* PRODUCTS */
-export const getAllProducts = async () => Product.find().lean();
-
-export const getByIdProduct = async (id)=> Product.findById(id).lean();
-
-export const createProduct = async (data) => Product.create(data);
-
-export const deleteByIdProduct = async (id) =>Product.findByIdAndDelete(id);
-
-export const updateProduct = async (id, data) =>Product.findByIdAndUpdate(id, data, { new: true });
+export const updatePets = async (id, data) => Pets.findByIdAndUpdate(id, data, { new: true });
 
