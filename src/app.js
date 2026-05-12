@@ -14,7 +14,9 @@ import sessionRoutes from "./routes/session.routes.js";
 import { connectAuto } from "./config/conect.config.js";
 import dotenv from "dotenv";
 dotenv.config();
-import cors from "cors"
+
+import cors from "cors";
+import logger from "./utils/logger.js";
 
 const app = express();
 
@@ -22,7 +24,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
 
 app.use(express.static(path.join(process.cwd(), "src", "public")));
 
@@ -35,14 +37,19 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/session", sessionRoutes);
 app.use("/api/pets", petsRoutes);
-app.use("/apidocs",swaggerUi.serve,swaggerUi.setup(specs));
+app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // SERVER
 const startServer = async () => {
-  await connectAuto();
-  app.listen(8080, () =>
-    console.log("App running on http://localhost:8080")
-  );
+  try {
+    await connectAuto();
+
+    app.listen(8080, () => {
+      logger.info("App running on http://localhost:8080");
+    });
+  } catch (error) {
+    logger.error(`Error starting server: ${error.message}`);
+  }
 };
 
 startServer();
