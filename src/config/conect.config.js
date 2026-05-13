@@ -1,40 +1,17 @@
 import mongoose from "mongoose";
 import logger from "../utils/logger.js";
 
-const baseMongooseOpts = {
-  serverSelectionTimeoutMS: 1000,
-};
-
-export const conectMongoDb = async () => {
+export const connectMongo = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL, baseMongooseOpts);
+    if (!process.env.MONGO_ATLAS_URL) {
+      throw new Error("MONGO_ATLAS_URL no definida");
+    }
 
-    logger.info("Conectado a MongoDB LOCAL");
-  } catch (err) {
-    logger.error(`Mongo LOCAL error: ${err.message}`);
+    await mongoose.connect(process.env.MONGO_ATLAS_URL);
 
+    logger.info("✅ Conectado a MongoDB Atlas");
+  } catch (error) {
+    logger.error(`❌ Mongo error: ${error.message}`);
     process.exit(1);
   }
-};
-
-export const conectMongoDbAtlas = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_ATLAS_URL, baseMongooseOpts);
-
-    logger.info("Conectado a MongoDB ATLAS");
-  } catch (err) {
-    logger.error(`Mongo ATLAS error: ${err.message}`);
-
-    process.exit(1);
-  }
-};
-
-export const connectAuto = async () => {
-  const target = (process.env.MONGO_TARGET || "LOCAL").toUpperCase();
-
-  logger.info(`Mongo target selected: ${target}`);
-
-  return target === "ATLAS"
-    ? conectMongoDbAtlas()
-    : conectMongoDb();
 };

@@ -11,7 +11,7 @@ import userRoutes from "./routes/user.routes.js";
 import petsRoutes from "./routes/pets.routes.js";
 import sessionRoutes from "./routes/session.routes.js";
 
-import { connectAuto } from "./config/conect.config.js";
+import { connectMongo } from "./config/conect.config.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -42,13 +42,14 @@ app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(specs));
 // SERVER
 const startServer = async () => {
   try {
-    await connectAuto();
+    await connectMongo();
 
-    app.listen(8080, () => {
-      logger.info("App running on http://localhost:8080");
+    app.listen(process.env.PORT || 8080, () => {
+      logger.info(`🚀 Server running on port ${process.env.PORT || 8080}`);
     });
   } catch (error) {
-    logger.error(`Error starting server: ${error.message}`);
+    logger.error(`❌ Error starting server: ${error.message}`);
+    process.exit(1);
   }
 };
 
