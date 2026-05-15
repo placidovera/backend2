@@ -116,3 +116,20 @@ Estado del proyecto
 ✔ Roles admin/user
 ✔ Swagger documentado
 ✔ Dockerized
+
+API TESTS (AUTOMATIZADOS)
+
+El proyecto incluye un script de tests manuales para validar todos los endpoints principales de la API.
+
+Ubicación
+src/tests/api-tests.js
+
+Cómo ejecutar los tests
+
+Primero levantar el servidor:
+
+node src/app.js
+
+En otra terminal ejecutar:
+
+node src/tests/api-tests.js
