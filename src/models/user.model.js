@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+
     email: {
       type: String,
       required: true,
@@ -13,16 +14,20 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       trim: true
     },
+
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user"
     },
-    cart: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "carts",
-      required: false
-    },
+
+    // ✅ RELACIÓN CON MASCOTAS ADOPTADAS
+    pets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Pets"
+      }
+    ],
 
     password: {
       type: String,

@@ -16,6 +16,7 @@ router.get(
       first_name: req.user.first_name,
       email: req.user.email,
       role: req.user.role,
+
     });
   }
 );

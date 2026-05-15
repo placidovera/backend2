@@ -9,7 +9,7 @@ export const connectMongo = async () => {
 
     await mongoose.connect(process.env.MONGO_ATLAS_URL);
 
-    logger.info("✅ Conectado a MongoDB Atlas");
+    logger.info("Conectado a MongoDB Atlas");
   } catch (error) {
     logger.error(`❌ Mongo error: ${error.message}`);
     process.exit(1);

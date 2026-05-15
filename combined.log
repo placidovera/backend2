@@ -61,3 +61,140 @@
 [2026-05-13T02:00:36.717Z] [32minfo[39m: Initializing Passport JWT Strategy
 [2026-05-13T02:00:38.303Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
 [2026-05-13T02:00:38.321Z] [32minfo[39m: 🚀 Server running on port 8080
+[2026-05-14T20:17:23.941Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T20:17:24.921Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T20:17:24.929Z] [32minfo[39m: 🚀 Server running on port 8080
+[2026-05-14T20:50:30.275Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T20:50:32.047Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T20:50:32.058Z] [32minfo[39m: Server running on port 8080
+[2026-05-14T20:52:39.624Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T20:52:40.966Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T20:52:40.976Z] [32minfo[39m: Server running on port 8080
+[2026-05-14T20:58:58.792Z] [32minfo[39m: Creating new pet: Firulais
+[2026-05-14T20:58:58.904Z] [32minfo[39m: Pet created successfully with id: 6a06379294b1bca42c0414e9
+[2026-05-14T20:59:41.995Z] [32minfo[39m: Creating new pet: Mishifu
+[2026-05-14T20:59:42.133Z] [32minfo[39m: Pet created successfully with id: 6a0637bd94b1bca42c0414eb
+[2026-05-14T21:00:07.607Z] [32minfo[39m: Creating new pet: Toby
+[2026-05-14T21:00:07.736Z] [32minfo[39m: Pet created successfully with id: 6a0637d794b1bca42c0414ed
+[2026-05-14T21:05:54.452Z] [32minfo[39m: Creating user: juan@gmail.com
+[2026-05-14T21:05:54.760Z] [32minfo[39m: User created successfully: juan@gmail.com
+[2026-05-14T21:21:43.021Z] [32minfo[39m: Login attempt: juan@gmail.com
+[2026-05-14T21:21:43.908Z] [32minfo[39m: Login successful: juan@gmail.com
+[2026-05-14T21:22:55.147Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:22:55.148Z] [31merror[39m: Error creating adoption: Adoption is not defined
+[2026-05-14T21:23:16.150Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:23:16.150Z] [31merror[39m: Error creating adoption: Adoption is not defined
+[2026-05-14T21:33:55.027Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T21:33:55.937Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T21:33:55.943Z] [32minfo[39m: Server running on port 8080
+[2026-05-14T21:34:01.081Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:34:01.191Z] [32minfo[39m: Adoption created successfully
+[2026-05-14T21:34:57.662Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:34:57.714Z] [32minfo[39m: Adoption created successfully
+[2026-05-14T21:38:21.503Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:38:21.556Z] [32minfo[39m: Adoption created successfully
+[2026-05-14T21:38:30.988Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T21:38:31.876Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T21:38:31.882Z] [32minfo[39m: Server running on port 8080
+[2026-05-14T21:38:37.461Z] [32minfo[39m: Creating adoption - User: [object Object] | Pet: undefined
+[2026-05-14T21:38:37.464Z] [31merror[39m: Error creating adoption: Cast to ObjectId failed for value "{ owner: '6a06393294b1bca42c0414f0', pet: '6a0637d794b1bca42c0414ed' }" (type Object) at path "_id" for model "users"
+[2026-05-14T21:39:21.295Z] [32minfo[39m: Creating adoption - User: [object Object] | Pet: undefined
+[2026-05-14T21:39:21.296Z] [31merror[39m: Error creating adoption: Cast to ObjectId failed for value "{ owner: '6a06393294b1bca42c0414f0', pet: '6a0637d794b1bca42c0414ed' }" (type Object) at path "_id" for model "users"
+[2026-05-14T21:39:34.367Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T21:39:35.275Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T21:39:35.279Z] [32minfo[39m: Server running on port 8080
+[2026-05-14T21:39:38.477Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:39:38.536Z] [32minfo[39m: Adoption created successfully
+[2026-05-14T21:41:25.448Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:41:25.496Z] [32minfo[39m: Adoption created successfully
+[2026-05-14T21:41:35.001Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-14T21:41:35.904Z] [32minfo[39m: ✅ Conectado a MongoDB Atlas
+[2026-05-14T21:41:35.908Z] [32minfo[39m: Server running on port 8080
+[2026-05-14T21:41:39.545Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:41:39.708Z] [32minfo[39m: Adoption created successfully
+[2026-05-14T21:43:09.674Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:43:09.721Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
+[2026-05-14T21:45:05.302Z] [32minfo[39m: Fetching all pets
+[2026-05-14T21:45:23.385Z] [32minfo[39m: Fetching pet by id: a06379294b1bca42c0414e9
+[2026-05-14T21:45:23.386Z] [31merror[39m: Error fetching pet a06379294b1bca42c0414e9: Cast to ObjectId failed for value "a06379294b1bca42c0414e9" (type string) at path "_id" for model "Pets"
+[2026-05-14T21:45:40.633Z] [32minfo[39m: Fetching all pets
+[2026-05-14T21:47:16.101Z] [32minfo[39m: Fetching adoption by id: 6a064193cf3cf79f37447c75
+[2026-05-14T21:49:21.841Z] [32minfo[39m: Fetching pet by id: 6a0637d794b1bca42c0414ed
+[2026-05-14T21:50:39.967Z] [32minfo[39m: Fetching pet by id: 6a0637d794b1bca42c0414ed
+[2026-05-14T21:51:41.928Z] [32minfo[39m: Creating adoption
+[2026-05-14T21:51:41.979Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
+[2026-05-15T00:52:50.916Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T00:52:53.366Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T00:52:53.377Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T01:15:42.259Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T01:15:43.568Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T01:15:43.573Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T01:18:09.402Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T01:18:10.204Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T01:18:10.209Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T16:19:52.709Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T16:19:54.265Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T16:19:54.282Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T16:22:55.006Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:22:55.886Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:22:55.887Z] [33mwarn[39m: Forbidden access: martin@test.com (user) -> /api/pets/6a06379294b1bca42c0414e9
+[2026-05-15T16:23:27.752Z] [32minfo[39m: Login attempt: juan@gmail.com
+[2026-05-15T16:23:28.011Z] [32minfo[39m: Login successful: juan@gmail.com
+[2026-05-15T16:23:31.254Z] [32minfo[39m: Login attempt: juan@gmail.com
+[2026-05-15T16:23:31.419Z] [32minfo[39m: Login successful: juan@gmail.com
+[2026-05-15T16:24:50.885Z] [32minfo[39m: JWT auth attempt for user id: 6a06393294b1bca42c0414f0
+[2026-05-15T16:24:50.976Z] [32minfo[39m: Authenticated user: juan@gmail.com
+[2026-05-15T16:24:50.979Z] [33mwarn[39m: Forbidden access: juan@gmail.com (user) -> /api/pets/6a06379294b1bca42c0414e9
+[2026-05-15T16:25:31.060Z] [32minfo[39m: JWT auth attempt for user id: 6a06393294b1bca42c0414f0
+[2026-05-15T16:25:31.158Z] [32minfo[39m: Authenticated user: juan@gmail.com
+[2026-05-15T16:25:31.158Z] [33mwarn[39m: Forbidden access: juan@gmail.com (user) -> /api/pets/6a06379294b1bca42c0414e9
+[2026-05-15T16:25:34.012Z] [32minfo[39m: JWT auth attempt for user id: 6a06393294b1bca42c0414f0
+[2026-05-15T16:25:34.126Z] [32minfo[39m: Authenticated user: juan@gmail.com
+[2026-05-15T16:25:34.127Z] [33mwarn[39m: Forbidden access: juan@gmail.com (user) -> /api/pets/6a06379294b1bca42c0414e9
+[2026-05-15T16:33:20.146Z] [32minfo[39m: Login attempt: martin@test.com
+[2026-05-15T16:33:20.365Z] [32minfo[39m: Login successful: martin@test.com
+[2026-05-15T16:34:21.934Z] [32minfo[39m: Login attempt: martin@test.com
+[2026-05-15T16:34:22.123Z] [32minfo[39m: Login successful: martin@test.com
+[2026-05-15T16:38:34.016Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:38:34.120Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:38:34.121Z] [32minfo[39m: Current session requested by: martin@test.com
+[2026-05-15T16:39:46.642Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:39:46.704Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:39:46.704Z] [32minfo[39m: Current session requested by: martin@test.com
+[2026-05-15T16:40:14.129Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T16:40:15.404Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T16:40:15.415Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T16:40:18.328Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:40:18.497Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:40:18.499Z] [32minfo[39m: Current session requested by: martin@test.comtoken
+[2026-05-15T16:45:50.708Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:45:50.861Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:45:50.862Z] [32minfo[39m: Current session requested by: martin@test.comtoken
+[2026-05-15T16:49:57.992Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:49:58.161Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:49:58.163Z] [32minfo[39m: Updating pet: 6a06379294b1bca42c0414e9
+[2026-05-15T16:49:58.264Z] [32minfo[39m: Pet updated successfully: 6a06379294b1bca42c0414e9
+[2026-05-15T16:51:02.899Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:51:02.981Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:51:02.983Z] [32minfo[39m: Deleting pet: 6a06379294b1bca42c0414e9
+[2026-05-15T16:51:03.085Z] [32minfo[39m: Pet deleted successfully: 6a06379294b1bca42c0414e9
+[2026-05-15T16:51:12.048Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:51:12.202Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:51:12.203Z] [32minfo[39m: Deleting pet: 6a06379294b1bca42c0414e9
+[2026-05-15T16:51:12.298Z] [33mwarn[39m: Pet not found for delete: 6a06379294b1bca42c0414e9
+[2026-05-15T16:51:12.299Z] [31merror[39m: Error deleting pet 6a06379294b1bca42c0414e9: MASCOTA NO ENCONTRADA
+[2026-05-15T16:52:25.263Z] [32minfo[39m: Fetching all pets
+[2026-05-15T16:53:39.335Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:53:39.450Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:53:39.451Z] [33mwarn[39m: Forbidden access: martin@test.com (user) -> /api/adoptions/6a0744f7d5787e4b8f1989b3/6a0637bd94b1bca42c0414eb
+[2026-05-15T16:54:16.991Z] [32minfo[39m: JWT auth attempt for user id: 6a0744f7d5787e4b8f1989b3
+[2026-05-15T16:54:17.135Z] [32minfo[39m: Authenticated user: martin@test.com
+[2026-05-15T16:54:17.135Z] [33mwarn[39m: Forbidden access: martin@test.com (user) -> /api/adoptions/6a0744f7d5787e4b8f1989b3/6a0637bd94b1bca42c0414eb
+[2026-05-15T16:54:42.824Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T16:54:44.025Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T16:54:44.032Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T16:54:47.045Z] [32minfo[39m: Creating adoption
+[2026-05-15T16:54:47.344Z] [32minfo[39m: Adoption created successfully
+[2026-05-15T16:59:39.901Z] [32minfo[39m: Creating adoption
+[2026-05-15T16:59:40.004Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
+[2026-05-15T17:02:29.382Z] [32minfo[39m: User logout

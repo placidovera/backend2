@@ -1,6 +1,6 @@
 import { User } from "../models/user.model.js";
 import { Pets } from "../models/Pets.js";
-
+import { Adoption } from "../models/adoptions.model.js";
 /* USERS */
 export const getAll = async () => User.find().lean();
 
@@ -27,3 +27,13 @@ export const deleteByIdPets = async (id) => Pets.findByIdAndDelete(id);
 
 export const updatePets = async (id, data) => Pets.findByIdAndUpdate(id, data, { new: true });
 
+
+/* ADOPTIONS */
+export const getAllAdoptions = async () =>
+  Adoption.find().lean();
+
+export const getByIdAdoptions = async (id) =>
+  Adoption.findById(id).lean();
+
+export const createAdoption = async (data) =>
+  Adoption.create(data);

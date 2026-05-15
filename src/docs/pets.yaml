@@ -1,3 +1,42 @@
+openapi: 3.0.3
+
+info:
+  title: Pets Adoption API
+  version: 1.0.0
+  description: |
+    API REST desarrollada con Node.js, Express, MongoDB Atlas y Passport JWT.
+
+    ## Funcionalidades
+    - Registro y login de usuarios
+    - Autenticación JWT
+    - CRUD de mascotas
+    - Sistema de adopciones
+    - Docker y Kubernetes
+    - Swagger Documentation
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor local
+
+  - url: http://localhost:30759
+    description: Kubernetes NodePort
+
+tags:
+  - name: Users
+    description: Operaciones relacionadas a usuarios
+
+  - name: Auth
+    description: Autenticación y sesiones
+
+  - name: Session
+    description: Sesión autenticada actual
+
+  - name: Pets
+    description: Gestión de mascotas
+
+  - name: Adoptions
+    description: Gestión de adopciones
+
 paths:
 
   /api/users/register:
@@ -11,7 +50,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/requestBodies/registerUser'
+              $ref: '#/components/schemas/RegisterUser'
 
       responses:
         "201":
@@ -27,6 +66,126 @@ paths:
         "500":
           description: Error del servidor.
 
+  /api/users:
+    get:
+      summary: Obtiene todos los usuarios.
+      tags:
+        - Users
+
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: Lista de usuarios.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+        "401":
+          description: Unauthorized.
+
+        "403":
+          description: No autorizado.
+
+        "500":
+          description: Error del servidor.
+
+  /api/users/{id}:
+    get:
+      summary: Obtiene un usuario por ID.
+      tags:
+        - Users
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Usuario encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        "404":
+          description: Usuario no encontrado.
+
+        "500":
+          description: Error del servidor.
+
+    patch:
+      summary: Actualiza un usuario.
+      tags:
+        - Users
+
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+
+      responses:
+        "200":
+          description: Usuario actualizado correctamente.
+
+        "401":
+          description: Unauthorized.
+
+        "403":
+          description: No autorizado.
+
+        "500":
+          description: Error del servidor.
+
+    delete:
+      summary: Elimina un usuario.
+      tags:
+        - Users
+
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Usuario eliminado correctamente.
+
+        "401":
+          description: Unauthorized.
+
+        "403":
+          description: No autorizado.
+
+        "404":
+          description: Usuario no encontrado.
+
+        "500":
+          description: Error del servidor.
 
   /api/auth/login:
     post:
@@ -39,7 +198,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/requestBodies/loginUser'
+              $ref: '#/components/schemas/LoginUser'
 
       responses:
         "200":
@@ -48,6 +207,7 @@ paths:
             application/json:
               schema:
                 type: object
+
                 properties:
                   message:
                     type: string
@@ -61,12 +221,30 @@ paths:
         "500":
           description: Error del servidor.
 
+  /api/auth/logout:
+    post:
+      summary: Cierra la sesión del usuario.
+      tags:
+        - Auth
+
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: Logout exitoso.
+
+        "500":
+          description: Error del servidor.
 
   /session/current:
     get:
       summary: Obtiene la sesión actual autenticada.
       tags:
         - Session
+
+      security:
+        - bearerAuth: []
 
       responses:
         "200":
@@ -75,6 +253,7 @@ paths:
             application/json:
               schema:
                 type: object
+
                 properties:
                   first_name:
                     type: string
@@ -91,28 +270,6 @@ paths:
         "500":
           description: Error del servidor.
 
-
-  /api/auth/logout:
-    post:
-      summary: Cierra la sesión del usuario.
-      tags:
-        - Auth
-
-      responses:
-        "200":
-          description: Logout exitoso.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-
-        "500":
-          description: Error del servidor.
-
-
   /api/pets:
     get:
       summary: Obtiene todas las mascotas.
@@ -126,24 +283,27 @@ paths:
             application/json:
               schema:
                 type: array
+
                 items:
                   $ref: '#/components/schemas/Pet'
 
         "500":
           description: Error del servidor.
 
-
     post:
       summary: Crea una nueva mascota.
       tags:
         - Pets
+
+      security:
+        - bearerAuth: []
 
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/requestBodies/createPet'
+              $ref: '#/components/schemas/CreatePet'
 
       responses:
         "201":
@@ -159,7 +319,6 @@ paths:
         "500":
           description: Error del servidor.
 
-
   /api/pets/{pid}:
     get:
       summary: Obtiene una mascota por ID.
@@ -170,7 +329,6 @@ paths:
         - name: pid
           in: path
           required: true
-          description: ID de la mascota.
           schema:
             type: string
 
@@ -188,17 +346,18 @@ paths:
         "500":
           description: Error del servidor.
 
-
     put:
       summary: Actualiza una mascota por ID.
       tags:
         - Pets
 
+      security:
+        - bearerAuth: []
+
       parameters:
         - name: pid
           in: path
           required: true
-          description: ID de la mascota.
           schema:
             type: string
 
@@ -207,7 +366,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/requestBodies/updatePet'
+              $ref: '#/components/schemas/UpdatePet'
 
       responses:
         "200":
@@ -222,17 +381,18 @@ paths:
         "500":
           description: Error del servidor.
 
-
     delete:
       summary: Elimina una mascota por ID.
       tags:
         - Pets
 
+      security:
+        - bearerAuth: []
+
       parameters:
         - name: pid
           in: path
           required: true
-          description: ID de la mascota.
           schema:
             type: string
 
@@ -240,15 +400,105 @@ paths:
         "200":
           description: Mascota eliminada correctamente.
 
+        "401":
+          description: Unauthorized.
+
+        "403":
+          description: No autorizado.
+
         "404":
           description: Mascota no encontrada.
 
         "500":
           description: Error del servidor.
 
+  /api/adoptions:
+    get:
+      summary: Obtiene todas las adopciones.
+      tags:
+        - Adoptions
 
+      responses:
+        "200":
+          description: Lista de adopciones.
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: '#/components/schemas/Adoption'
+
+        "500":
+          description: Error del servidor.
+
+  /api/adoptions/{aid}:
+    get:
+      summary: Obtiene una adopción por ID.
+      tags:
+        - Adoptions
+
+      parameters:
+        - name: aid
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Adopción encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Adoption'
+
+        "404":
+          description: Adopción no encontrada.
+
+        "500":
+          description: Error del servidor.
+
+  /api/adoptions/{uid}/{pid}:
+    post:
+      summary: Crea una nueva adopción.
+      tags:
+        - Adoptions
+
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "201":
+          description: Adopción creada correctamente.
+
+        "400":
+          description: Mascota ya adoptada.
+
+        "500":
+          description: Error del servidor.
 
 components:
+
+  securitySchemes:
+
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
   schemas:
 
@@ -256,83 +506,72 @@ components:
       type: object
 
       properties:
+
         _id:
           type: string
-          description: ID generado automáticamente por MongoDB.
 
         first_name:
           type: string
-          description: Nombre del usuario.
 
         email:
           type: string
-          description: Email del usuario.
-
-        password:
-          type: string
-          description: Contraseña hasheada con bcrypt.
 
         role:
           type: string
-          description: Rol del usuario.
+
+        pets:
+          type: array
+
+          items:
+            type: string
 
       example:
         _id: 69fbdaa4042e0393267e33e8
         first_name: Martin
         email: admin@test.com
-        password: $2b$10$eEYTosze9A20sdMcV10QA.ruT8nX/dcXfecRh9muPpp9NkVAoJsH6
         role: user
-
-
+        pets: []
 
     Pet:
       type: object
 
       properties:
+
         _id:
           type: string
-          description: ID generado automáticamente por MongoDB.
 
         name:
           type: string
-          description: Nombre de la mascota.
 
         species:
           type: string
-          description: Tipo de mascota.
 
         breed:
           type: string
-          description: Raza.
 
         age:
           type: number
-          description: Edad.
 
         size:
           type: string
-          description: Tamaño de la mascota.
 
         description:
           type: string
-          description: Descripción de la mascota.
 
         status:
           type: string
-          description: Estado de adopción.
 
         images:
           type: array
+
           items:
             type: string
 
         vaccinated:
           type: boolean
-          description: Estado de vacunación.
 
         stock:
           type: number
-          description: Cantidad disponible.
 
       example:
         _id: 69fbddf7e065d02a3b317f9a
@@ -349,14 +588,43 @@ components:
         vaccinated: true
         stock: 1
 
-
-
-  requestBodies:
-
-    registerUser:
+    Adoption:
       type: object
 
       properties:
+
+        _id:
+          type: string
+
+        owner:
+          $ref: '#/components/schemas/User'
+
+        pet:
+          $ref: '#/components/schemas/Pet'
+
+      example:
+        _id: 6812fa9cc0f1f92ab3aa1234
+
+        owner:
+          _id: 6812fa9cc0f1f92ab3aa1111
+          first_name: Martin
+          email: admin@test.com
+
+        pet:
+          _id: 6812fa9cc0f1f92ab3aa2222
+          name: Rocky
+          species: Perro
+
+    RegisterUser:
+      type: object
+
+      required:
+        - first_name
+        - email
+        - password
+
+      properties:
+
         first_name:
           type: string
 
@@ -371,12 +639,15 @@ components:
         email: admin@test.com
         password: "123456"
 
-
-
-    loginUser:
+    LoginUser:
       type: object
 
+      required:
+        - email
+        - password
+
       properties:
+
         email:
           type: string
 
@@ -387,12 +658,16 @@ components:
         email: admin@test.com
         password: "123456"
 
-
-
-    createPet:
+    CreatePet:
       type: object
 
+      required:
+        - name
+        - species
+        - description
+
       properties:
+
         name:
           type: string
 
@@ -416,6 +691,7 @@ components:
 
         images:
           type: array
+
           items:
             type: string
 
@@ -439,12 +715,11 @@ components:
         vaccinated: true
         stock: 1
 
-
-
-    updatePet:
+    UpdatePet:
       type: object
 
       properties:
+
         stock:
           type: number
 
@@ -454,3 +729,22 @@ components:
       example:
         stock: 5
         status: adoptado
+
+    UpdateUser:
+      type: object
+
+      properties:
+
+        first_name:
+          type: string
+
+        email:
+          type: string
+
+        role:
+          type: string
+
+      example:
+        first_name: Martin Updated
+        email: updated@test.com
+        role: admin

@@ -50,14 +50,16 @@ router.post("/login", async (req, res) => {
 
     logger.info(`Login successful: ${email}`);
 
-    res.json({
-      message: "Login exitoso",
-      user: {
-        id: user._id,
-        email: user.email,
-        role: user.role,
-      },
-    });
+   res.json({
+  message: "Login exitoso",
+  token,
+  user: {
+    id: user._id,
+    email: user.email,
+    role: user.role,
+  },
+  
+});
   } catch (error) {
     logger.error(`Login error: ${error.message}`);
 

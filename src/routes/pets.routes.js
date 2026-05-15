@@ -13,7 +13,7 @@ const router = Router();
 router.get("/", getPetsController);
 router.get("/:pid", getPetsByIdController);
 router.post("/", createPetsController);
-router.put("/:pid",authJWT,authorizeRole("admin"), updatePetsController);
-router.delete("/:pid", deletePetsController);
+router.put("/:pid",authJWT, updatePetsController);
+router.delete("/:pid",authJWT,deletePetsController);
 
 export default router;

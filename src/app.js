@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
@@ -9,11 +12,11 @@ import { specs } from "./docs/swagger.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import petsRoutes from "./routes/pets.routes.js";
+import adoptionRoutes from "./routes/adoptions.routes.js";
 import sessionRoutes from "./routes/session.routes.js";
 
 import { connectMongo } from "./config/conect.config.js";
-import dotenv from "dotenv";
-dotenv.config();
+
 
 import cors from "cors";
 import logger from "./utils/logger.js";
@@ -29,14 +32,14 @@ app.use(cors());
 app.use(express.static(path.join(process.cwd(), "src", "public")));
 
 // PASSPORT
-initializePassport();
+initializePassport(passport);
 app.use(passport.initialize());
-
 // ROUTES
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/session", sessionRoutes);
 app.use("/api/pets", petsRoutes);
+app.use("/api/adoptions", adoptionRoutes);
 app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // SERVER
@@ -45,10 +48,10 @@ const startServer = async () => {
     await connectMongo();
 
     app.listen(process.env.PORT || 8080, () => {
-      logger.info(`🚀 Server running on port ${process.env.PORT || 8080}`);
+      logger.info(`Server running on port ${process.env.PORT || 8080}`);
     });
   } catch (error) {
-    logger.error(`❌ Error starting server: ${error.message}`);
+    logger.error(`Error starting server: ${error.message}`);
     process.exit(1);
   }
 };

@@ -7,3 +7,12 @@
 [2026-05-13T00:43:30.317Z] [31merror[39m: ❌ Mongo error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
 [2026-05-13T01:49:50.007Z] [31merror[39m: ❌ Mongo error: querySrv ENOTFOUND _mongodb._tcp.cluster0.usuraz5.mongodb.net
 [2026-05-13T01:55:47.494Z] [31merror[39m: ❌ Mongo error: bad auth : authentication failed
+[2026-05-14T21:22:55.148Z] [31merror[39m: Error creating adoption: Adoption is not defined
+[2026-05-14T21:23:16.150Z] [31merror[39m: Error creating adoption: Adoption is not defined
+[2026-05-14T21:38:37.464Z] [31merror[39m: Error creating adoption: Cast to ObjectId failed for value "{ owner: '6a06393294b1bca42c0414f0', pet: '6a0637d794b1bca42c0414ed' }" (type Object) at path "_id" for model "users"
+[2026-05-14T21:39:21.296Z] [31merror[39m: Error creating adoption: Cast to ObjectId failed for value "{ owner: '6a06393294b1bca42c0414f0', pet: '6a0637d794b1bca42c0414ed' }" (type Object) at path "_id" for model "users"
+[2026-05-14T21:43:09.721Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
+[2026-05-14T21:45:23.386Z] [31merror[39m: Error fetching pet a06379294b1bca42c0414e9: Cast to ObjectId failed for value "a06379294b1bca42c0414e9" (type string) at path "_id" for model "Pets"
+[2026-05-14T21:51:41.979Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
+[2026-05-15T16:51:12.299Z] [31merror[39m: Error deleting pet 6a06379294b1bca42c0414e9: MASCOTA NO ENCONTRADA
+[2026-05-15T16:59:40.004Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA

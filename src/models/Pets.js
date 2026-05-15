@@ -31,7 +31,7 @@ const petSchema = new mongoose.Schema({
     default: "disponible"
   },
   images: {
-    type: [String] // URLs de imágenes
+    type: [String] 
   },
   vaccinated: {
     type: Boolean,

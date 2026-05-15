@@ -5,7 +5,7 @@ import logger from "../utils/logger.js";
 
 const cookieExtractor = (req) => req?.cookies?.token || null;
 
-const initializePassport = () => {
+const initializePassport = (passport) => {
   logger.info("Initializing Passport JWT Strategy");
 
   passport.use(
@@ -20,22 +20,12 @@ const initializePassport = () => {
       },
       async (payload, done) => {
         try {
-          logger.info(`JWT auth attempt for user id: ${payload.id}`);
-
           const user = await User.findById(payload.id).select("-password");
 
-          if (!user) {
-            logger.warn(`User not found for id: ${payload.id}`);
-
-            return done(null, false);
-          }
-
-          logger.info(`Authenticated user: ${user.email}`);
+          if (!user) return done(null, false);
 
           return done(null, user);
         } catch (error) {
-          logger.error(`Passport JWT error: ${error.message}`);
-
           return done(error, false);
         }
       }
