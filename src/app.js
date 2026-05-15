@@ -7,19 +7,15 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import initializePassport from "./config/passport.config.js";
 import swaggerUi from "swagger-ui-express";
+import cors from "cors";
+import logger from "./utils/logger.js";
 import { specs } from "./docs/swagger.js";
-
+import { connectMongo } from "./config/conect.config.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import petsRoutes from "./routes/pets.routes.js";
 import adoptionRoutes from "./routes/adoptions.routes.js";
 import sessionRoutes from "./routes/session.routes.js";
-
-import { connectMongo } from "./config/conect.config.js";
-
-
-import cors from "cors";
-import logger from "./utils/logger.js";
 
 const app = express();
 
@@ -28,9 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
-
-app.use(express.static(path.join(process.cwd(), "src", "public")));
-
 // PASSPORT
 initializePassport(passport);
 app.use(passport.initialize());
@@ -41,12 +34,10 @@ app.use("/session", sessionRoutes);
 app.use("/api/pets", petsRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(specs));
-
 // SERVER
 const startServer = async () => {
   try {
     await connectMongo();
-
     app.listen(process.env.PORT || 8080, () => {
       logger.info(`Server running on port ${process.env.PORT || 8080}`);
     });

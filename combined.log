@@ -204,3 +204,30 @@
 [2026-05-15T18:02:24.780Z] [32minfo[39m: Initializing Passport JWT Strategy
 [2026-05-15T18:02:25.817Z] [32minfo[39m: Conectado a MongoDB Atlas
 [2026-05-15T18:02:25.829Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T18:03:29.736Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T18:03:30.940Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T18:03:30.947Z] [32minfo[39m: Server running on port 8080
+[2026-05-15T18:09:01.316Z] [32minfo[39m: Creating user: test@test.com
+[2026-05-15T18:09:01.505Z] [32minfo[39m: User created successfully: test@test.com
+[2026-05-15T18:09:01.524Z] [32minfo[39m: Login attempt: test@test.com
+[2026-05-15T18:09:01.638Z] [32minfo[39m: Login successful: test@test.com
+[2026-05-15T18:09:01.642Z] [32minfo[39m: Fetching all pets
+[2026-05-15T18:09:01.700Z] [32minfo[39m: Creating new pet: Luna
+[2026-05-15T18:09:01.767Z] [32minfo[39m: Pet created successfully with id: 6a07613db519e237dea168e2
+[2026-05-15T18:09:01.824Z] [32minfo[39m: Creating adoption
+[2026-05-15T18:09:02.001Z] [32minfo[39m: Adoption created successfully
+[2026-05-15T18:09:02.007Z] [32minfo[39m: User logout
+[2026-05-15T18:12:11.805Z] [32minfo[39m: Creating user: test@test.com
+[2026-05-15T18:12:11.954Z] [33mwarn[39m: Email already in use: test@test.com
+[2026-05-15T18:12:11.954Z] [31merror[39m: Error creating user: el email test@test.com ya está en uso
+[2026-05-15T18:12:11.964Z] [32minfo[39m: Login attempt: test@test.com
+[2026-05-15T18:12:12.150Z] [32minfo[39m: Login successful: test@test.com
+[2026-05-15T18:12:12.155Z] [32minfo[39m: Fetching all pets
+[2026-05-15T18:12:12.272Z] [32minfo[39m: Creating new pet: Luna
+[2026-05-15T18:12:12.364Z] [32minfo[39m: Pet created successfully with id: 6a0761fcb519e237dea168ec
+[2026-05-15T18:12:12.467Z] [32minfo[39m: Creating adoption
+[2026-05-15T18:12:12.583Z] [31merror[39m: Error creating adoption: Adoptions validation failed: owner: Cast to ObjectId failed for value "undefined" (type string) at path "owner" because of "BSONError"
+[2026-05-15T18:12:12.588Z] [32minfo[39m: User logout
+[2026-05-15T18:13:04.063Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-15T18:13:05.372Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-15T18:13:05.377Z] [32minfo[39m: Server running on port 8080

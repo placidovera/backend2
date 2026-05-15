@@ -16,3 +16,5 @@
 [2026-05-14T21:51:41.979Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
 [2026-05-15T16:51:12.299Z] [31merror[39m: Error deleting pet 6a06379294b1bca42c0414e9: MASCOTA NO ENCONTRADA
 [2026-05-15T16:59:40.004Z] [31merror[39m: Error creating adoption: LA MASCOTA YA FUE ADOPTADA
+[2026-05-15T18:12:11.954Z] [31merror[39m: Error creating user: el email test@test.com ya está en uso
+[2026-05-15T18:12:12.583Z] [31merror[39m: Error creating adoption: Adoptions validation failed: owner: Cast to ObjectId failed for value "undefined" (type string) at path "owner" because of "BSONError"

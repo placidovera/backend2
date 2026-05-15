@@ -37,7 +37,6 @@ router.post("/login", async (req, res) => {
       {
         id: user._id,
         role: user.role,
-        cartId: user.cartId,
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
