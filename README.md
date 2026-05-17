@@ -146,3 +146,8 @@ https://backend2-879j.onrender.com/
 - Swagger Docs:
   https://backend2-879j.onrender.com/apidocs
 
+## Repositorio
+
+GitHub:
+https://github.com/placidovera/backend2
+
