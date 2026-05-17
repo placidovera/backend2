@@ -1,8 +1,8 @@
-Entrega 3 - Backend Adoptions API
+## Entrega 3 - Backend Adoptions API
 
 API REST desarrollada en Node.js + Express + MongoDB para la gestión de usuarios, mascotas y adopciones. Incluye autenticación con JWT, control de roles y documentación Swagger.
 
-Tecnologías utilizadas
+## Tecnologías utilizadas
 
 Node.js
 Express
@@ -14,7 +14,7 @@ Docker
 Swagger
 Winston (logger)
 
-Arquitectura del proyecto
+## Arquitectura del proyecto
 
 La aplicación está organizada en capas:
 
@@ -27,7 +27,7 @@ models/ → esquemas de MongoDB
 middleware/ → autenticación y autorización
 config/passport.config.js → estrategia JWT
 
-Inicialización del servidor
+## Inicialización del servidor
 
 El servidor se inicializa en app.js:
 
@@ -39,7 +39,7 @@ Registra rutas
 Levanta servidor en puerto definido
 npm start
 
-Autenticación
+## Autenticación
 
 El sistema usa JWT:
 
@@ -49,7 +49,7 @@ Cookie HTTP-only o
 Authorization: Bearer token
 Passport valida el token en rutas protegidas
 
-Usuarios Endpoints
+## Usuarios Endpoints
 
 POST /api/users/register
 POST /api/auth/login
@@ -83,13 +83,13 @@ Controlado con middleware:
 
 authorizeRole("admin")
 
-Documentación Swagger
+## Documentación Swagger
 
 Disponible en:
 
 http://localhost:8080/apidocs 
 
-Docker Hub
+## Docker Hub
 
 La imagen del proyecto está disponible en:
 
@@ -100,7 +100,7 @@ Ejecutar con Docker
 docker pull placidomartin/entrega3:latest
 docker run -p 8080:8080 placidomartin/entrega3:latest
 
-Ejemplo de flujo
+## Ejemplo de flujo
 
 Register user
 Login → obtener token
@@ -117,7 +117,7 @@ Estado del proyecto
 ✔ Swagger documentado
 ✔ Dockerized
 
-API TESTS (AUTOMATIZADOS)
+## API TESTS (AUTOMATIZADOS)
 
 El proyecto incluye un script de tests manuales para validar todos los endpoints principales de la API.
 
@@ -133,3 +133,16 @@ node src/app.js
 En otra terminal ejecutar:
 
 node src/tests/api-tests.js
+
+## Deploy
+
+Backend desplegado en Render:
+
+https://backend2-879j.onrender.com/
+
+### Endpoints principales
+
+
+- Swagger Docs:
+  https://backend2-879j.onrender.com/apidocs
+
