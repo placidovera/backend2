@@ -231,3 +231,32 @@
 [2026-05-15T18:13:04.063Z] [32minfo[39m: Initializing Passport JWT Strategy
 [2026-05-15T18:13:05.372Z] [32minfo[39m: Conectado a MongoDB Atlas
 [2026-05-15T18:13:05.377Z] [32minfo[39m: Server running on port 8080
+[2026-05-19T11:02:47.712Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-19T11:02:48.946Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-19T11:02:48.964Z] [32minfo[39m: Server running on port 8080
+[2026-05-19T22:56:04.722Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-19T22:56:06.494Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-19T22:56:06.504Z] [32minfo[39m: Server running on port 8080
+[2026-05-19T23:05:14.083Z] [32minfo[39m: Creating user: test1779231914051@test.com
+[2026-05-19T23:05:14.262Z] [32minfo[39m: User created successfully: test1779231914051@test.com
+[2026-05-19T23:05:14.279Z] [32minfo[39m: Login attempt: test@test.com
+[2026-05-19T23:05:14.382Z] [32minfo[39m: Login successful: test@test.com
+[2026-05-19T23:05:14.387Z] [32minfo[39m: User logout
+[2026-05-19T23:05:14.391Z] [32minfo[39m: Fetching all pets
+[2026-05-19T23:05:14.442Z] [32minfo[39m: Creating new pet: Luna
+[2026-05-19T23:05:14.502Z] [32minfo[39m: Pet created successfully with id: 6a0cecaa39006961d3d6a08a
+[2026-05-19T23:05:14.560Z] [32minfo[39m: Creating adoption
+[2026-05-19T23:05:14.715Z] [32minfo[39m: Adoption created successfully
+[2026-05-19T23:06:52.779Z] [32minfo[39m: Creating user: test1779232012764@test.com
+[2026-05-19T23:06:52.926Z] [32minfo[39m: User created successfully: test1779232012764@test.com
+[2026-05-19T23:06:52.943Z] [32minfo[39m: Login attempt: test@test.com
+[2026-05-19T23:06:53.045Z] [32minfo[39m: Login successful: test@test.com
+[2026-05-19T23:06:53.049Z] [32minfo[39m: User logout
+[2026-05-19T23:06:53.054Z] [32minfo[39m: Fetching all pets
+[2026-05-19T23:06:53.111Z] [32minfo[39m: Creating new pet: Luna
+[2026-05-19T23:06:53.158Z] [32minfo[39m: Pet created successfully with id: 6a0ced0d39006961d3d6a096
+[2026-05-19T23:06:53.208Z] [32minfo[39m: Creating adoption
+[2026-05-19T23:06:53.365Z] [32minfo[39m: Adoption created successfully
+[2026-05-20T21:11:29.190Z] [32minfo[39m: Initializing Passport JWT Strategy
+[2026-05-20T21:11:31.431Z] [32minfo[39m: Conectado a MongoDB Atlas
+[2026-05-20T21:11:31.454Z] [32minfo[39m: Server running on port 8080

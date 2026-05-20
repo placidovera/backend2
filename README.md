@@ -117,22 +117,42 @@ Estado del proyecto
 ✔ Swagger documentado
 ✔ Dockerized
 
-## API TESTS (AUTOMATIZADOS)
+## API TESTS (MOCHA + CHAI + SUPERTEST + SINON)
 
-El proyecto incluye un script de tests manuales para validar todos los endpoints principales de la API.
+El proyecto incluye tests automatizados para validar el funcionamiento de los principales endpoints de la API.
 
-Ubicación
-src/tests/api-tests.js
+Los tests verifican:
+
+- Registro de usuarios
+- Login y generación de JWT
+- Logout
+- Obtención de mascotas
+- Creación de mascotas
+- Proceso de adopción
+- Uso de mocks/fakes con Sinon
+
+Tecnologías utilizadas:
+
+- Mocha
+- Chai
+- Supertest
+- Sinon
+
+Ubicación:
+
+src/tests/app.test.js
 
 Cómo ejecutar los tests
 
-Primero levantar el servidor:
+Primero instalar dependencias:
 
-node src/app.js
+npm install
 
-En otra terminal ejecutar:
+Luego ejecutar:
 
-node src/tests/api-tests.js
+npm test
+
+El script ejecutará automáticamente todas las pruebas configuradas en la API.
 
 ## Deploy
 

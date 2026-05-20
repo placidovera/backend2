@@ -9,8 +9,10 @@ import initializePassport from "./config/passport.config.js";
 import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import logger from "./utils/logger.js";
+
 import { specs } from "./docs/swagger.js";
 import { connectMongo } from "./config/conect.config.js";
+
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import petsRoutes from "./routes/pets.routes.js";
@@ -24,9 +26,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
+
 // PASSPORT
 initializePassport(passport);
 app.use(passport.initialize());
+
 // ROUTES
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -34,6 +38,7 @@ app.use("/session", sessionRoutes);
 app.use("/api/pets", petsRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(specs));
+
 // SERVER
 const startServer = async () => {
   try {
